@@ -1,0 +1,31 @@
+export const PARTIALS = {
+  ADD: "/add",
+  EDIT: "/edit",
+  NEW: "/new",
+  INTRO: "/intro",
+  PROFILE: "/profile",
+  PROFILE_ID: "/:profileId",
+  USERS: "/users",
+  TEAMS: "/teams",
+  TEAM_ID: "/:teamId",
+  USER_DETAILS: "/user_details",
+};
+
+const AUTHENTICATED_ROUTES = {
+  INTRO: PARTIALS.INTRO,
+  PROFILE: PARTIALS.PROFILE,
+  ADD_DETAILS: [PARTIALS.PROFILE, PARTIALS.USER_DETAILS, PARTIALS.ADD].join(""),
+  USER_DETAILS: [PARTIALS.PROFILE, PARTIALS.USER_DETAILS].join(""),
+  TEAM: [PARTIALS.TEAMS, PARTIALS.TEAM_ID].join(""),
+  CHOOSE_TEAM: PARTIALS.TEAMS,
+  TEAM_NEW: [PARTIALS.TEAMS, PARTIALS.NEW].join(""),
+  TEAM_EDIT: [PARTIALS.TEAMS, PARTIALS.TEAM_ID, PARTIALS.EDIT].join(""),
+};
+
+const ROUTES = {
+  ...AUTHENTICATED_ROUTES,
+};
+
+export { AUTHENTICATED_ROUTES, ROUTES };
+
+export default ROUTES;
