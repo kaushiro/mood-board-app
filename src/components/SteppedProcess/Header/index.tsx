@@ -1,27 +1,44 @@
-import React from "react";
+import React, { useState, Dispatch, SetStateAction } from "react";
 
-import Header from "./deprecated";
+import { HeaderStyled, ContainerStyled, ContentWrapperStyled } from "./styles";
+import HeaderSkeleton from "./components/HeaderSkeleton";
 
-import StepsProgress from "../StepsProgress";
+interface IHeaderContext {
+  hasBackLink: boolean;
+  setHasBackLink: Dispatch<SetStateAction<boolean>>;
+}
+export const HeaderContext = React.createContext<IHeaderContext>({
+  hasBackLink: false,
+  setHasBackLink: () => {},
+});
 
-import { XLargeTextStyled, StepsProgressWrapper } from "./styles";
-import { ISteppedProcessHeader } from "./types";
+interface IProps {
+  qaid?: string;
+  isLoading?: boolean;
+  className?: string;
+}
 
-const SteppedProcessHeader: React.FC<ISteppedProcessHeader> = ({
-  title,
-  steps,
-  isLoading,
+const Header: React.FC<IProps> = ({
+  qaid,
+  children,
+  isLoading = false,
+  className,
 }) => {
+  const [hasBackLink, setHasBackLink] = useState(false);
+
+  if (isLoading) {
+    return <HeaderSkeleton />;
+  }
+
   return (
-    <div>
-      <Header qaid="stepped-proccess-header" isLoading={isLoading}>
-        {title && <XLargeTextStyled as="h1">{title}</XLargeTextStyled>}
-        <StepsProgressWrapper>
-          <StepsProgress steps={steps} />
-        </StepsProgressWrapper>
-      </Header>
-    </div>
+    <HeaderContext.Provider value={{ hasBackLink, setHasBackLink }}>
+      <HeaderStyled className={className} data-qaid={`${qaid}-header`}>
+        <ContentWrapperStyled hasBackLink={hasBackLink} data-qaid={qaid}>
+          <ContainerStyled>{children}</ContainerStyled>
+        </ContentWrapperStyled>
+      </HeaderStyled>
+    </HeaderContext.Provider>
   );
 };
 
-export default SteppedProcessHeader;
+export default Header;

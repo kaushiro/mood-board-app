@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FormattedMessage } from "react-intl";
 
-// import mixins from "utils/deprecated_mixins";
-
 import { IStep } from "../types";
 
 import messages from "./messages";
@@ -18,26 +16,6 @@ import {
 interface IProps {
   steps: IStep[];
 }
-
-const StepTooltipWrapper: React.FC<{ shouldUse?: boolean }> = ({
-  shouldUse,
-  children,
-}) => {
-  // if (shouldUse) {
-  //   return (
-  //     <Tooltip
-  //       // @ts-expect-error ts-migrate(2322) FIXME: Type '{ children: Element; placement: string; trig... Remove this comment to see the full error message
-  //       // placement="top"
-  //       trigger="hover"
-  //       content={<FormattedMessage {...messages.stepAccessDisabled} />}
-  //     >
-  //       <div>{children}</div>
-  //     </Tooltip>
-  //   );
-  // }
-  return <>{children}</>;
-};
-
 const StepsProgress: React.FC<IProps> = ({ steps }) => {
   const [nextStep, setCurrentStep] = useState<IStep>();
 
@@ -63,7 +41,6 @@ const StepsProgress: React.FC<IProps> = ({ steps }) => {
             );
 
             return (
-              // <StepTooltipWrapper shouldUse={step.isDisabled} key={i}>
               <StepsProgressStepDetail
                 key={i}
                 value={stepValue}
@@ -74,7 +51,6 @@ const StepsProgress: React.FC<IProps> = ({ steps }) => {
                 isLastStep={i + 1 >= steps.length}
                 onClick={step.isDisabled ? undefined : step.onClickNavHeader}
               />
-              // </StepTooltipWrapper>
             );
           })}
         </StepDetailStyled>

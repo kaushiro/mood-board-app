@@ -41,7 +41,7 @@ const userDetailsRoutes = [
 
   {
     path: ROUTES.USER_DETAILS,
-    name: "All Onboarding Steps",
+    name: "All UserDetails",
     indexRoute: {
       components: setLayout(UserDetails),
     },

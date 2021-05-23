@@ -24,8 +24,11 @@ import ROUTES from "./shared/routes";
 // const Auth = React.lazy(() => {
 //   return import("./containers/Auth/Auth");
 // });
-
-const App = (props) => {
+interface IProps {
+  onTryAutoSignup: any;
+  isAuthenticated: boolean;
+}
+const App: React.FC<IProps> = (props) => {
   const { onTryAutoSignup } = props;
   useEffect(() => {
     onTryAutoSignup();

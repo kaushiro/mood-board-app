@@ -15,6 +15,13 @@ export const SideDrawerContainerStyled = styled.div<IOpenProps>`
   background-color: white;
   padding: 32px 16px;
   box-sizing: border-box;
+  nav ul {
+    display: block;
+
+    li a {
+      color: black;
+    }
+  }
   ${({ isOpen }) =>
     isOpen
       ? css`

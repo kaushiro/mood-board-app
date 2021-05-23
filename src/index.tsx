@@ -16,7 +16,7 @@ import { watchAuth, watchTeams } from "./store/sagas";
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     : null || compose;
 
 const rootReducer = combineReducers({

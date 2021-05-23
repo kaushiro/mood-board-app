@@ -6,7 +6,11 @@ import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
 
 import { MainContentContainerStyled } from "./styles";
-const Layout = (props: { isAuthenticated: any; children: React.ReactNode }) => {
+
+interface IProps {
+  isAuthenticated: boolean;
+}
+const Layout: React.FC<IProps> = ({ isAuthenticated, children }) => {
   const [isDrawerOpen, showSideDrawer] = useState(false);
 
   const sideDrawerClosedHandler = () => {
@@ -19,15 +23,15 @@ const Layout = (props: { isAuthenticated: any; children: React.ReactNode }) => {
   return (
     <Aux>
       <Toolbar
-        isAuthenticated={props.isAuthenticated}
+        isAuthenticated={isAuthenticated}
         drawerToggleClicked={sideDrawerToggleHandler}
       />
       <SideDrawer
-        isAuthenticated={props.isAuthenticated}
+        isAuthenticated={isAuthenticated}
         open={isDrawerOpen}
         closed={sideDrawerClosedHandler}
       />
-      <MainContentContainerStyled>{props.children}</MainContentContainerStyled>
+      <MainContentContainerStyled>{children}</MainContentContainerStyled>
     </Aux>
   );
 };

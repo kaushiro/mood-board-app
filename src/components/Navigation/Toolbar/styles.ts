@@ -19,8 +19,6 @@ export const ToolbarLogoStyled = styled.div`
 `;
 export const ToolbarNavStyled = styled.nav`
   @media screen and(max-width: 499px) {
-    .DesktopOnly {
-      display: none;
-    }
+    display: none;
   }
 `;

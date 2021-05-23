@@ -1,8 +1,3 @@
-/**
- * These enums are copied from Matter constants.ts
- * I tried to export them from here into Matter but TS wasn't happy
- * so duplicating them for now
- */
 export enum BREAKPOINT_KEYS {
   XS = "xs",
   SM = "sm",
@@ -21,9 +16,6 @@ export interface IBreakpointValues {
   [BREAKPOINT_KEYS.XXL]?: number;
 }
 
-/**
- * These are the high points for each breakpoint
- */
 export const BREAKPOINTS: IBreakpointValues = Object.freeze({
   [BREAKPOINT_KEYS.XS]: 20, // 320px - iphone 5>
   [BREAKPOINT_KEYS.SM]: 48, // 768px

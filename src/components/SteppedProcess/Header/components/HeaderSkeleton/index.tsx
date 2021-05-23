@@ -1,6 +1,6 @@
 import React from "react";
 
-import TextLoader from "../../../../../UI/TextLoader";
+import TextLoader from "../../../../UI/TextLoader";
 
 import { HeaderSkeletonStyled } from "./styles";
 

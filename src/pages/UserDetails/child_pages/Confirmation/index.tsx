@@ -19,6 +19,10 @@ interface IProps {
 }
 const Confirmation: React.FC<IProps> = ({ onPrevStep }) => {
   const { userData } = useContext(NewUserContext);
+  const userDataList = Object.entries(userData).map((entry) => {
+    return entry[0] + ": " + entry[1];
+  });
+
   const dispatch = useDispatch();
 
   const submitHandler = (userData) => {
@@ -35,7 +39,7 @@ const Confirmation: React.FC<IProps> = ({ onPrevStep }) => {
   return (
     <>
       <ConfirmationStyled>
-        <List list={userData} />
+        <List list={userDataList} />
       </ConfirmationStyled>
 
       <SubmitButtonWrapperStyled>

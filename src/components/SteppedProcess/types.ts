@@ -29,7 +29,7 @@ export interface IStep {
 export interface ISteppedProcess {
   title?: Title;
   steps: IStep[];
-  activeStepIndex: number;
+  activeStepIndex?: number;
   isLoading?: boolean;
 }
 

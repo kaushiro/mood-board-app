@@ -23,14 +23,13 @@ import {
   TeamsWrapperStyled,
   TeamContainerStyled,
   ListTitleStyled,
+  ResetButtonStyled,
+  ButtonsWrapperStyled,
 } from "./styles";
 const BoardIntro = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // const error = useSelector((state: any) => {
-  //   return state.list.error;
-  // });
   const onFetchTeams = useCallback(() => dispatch(actions.fetchTeams()), [
     dispatch,
   ]);
@@ -44,32 +43,14 @@ const BoardIntro = () => {
   const teamsArray = useSelector((state: any) => {
     return Array.from(state.team?.teams);
   });
-  // const [teams, setTeams] = useState([]]);
 
-  console.log(teamsArray);
-  // const teamsArray = teamsData.teams;
-  // console.log(teamsArray);
-  // const redTeam = console.log(teams);
-  // const onSetAuthRedirectPath = (newTaskId?: string): void => {
-  //   history.push(
-  //     resolveRoute(ROUTES.TASK, {
-  //       taskId: newTaskId,
-  //     })
-  //   );
-  //   // history.push(`tasks/?step=${step}`);
-  // };
   let content = teamsData?.error ? <p>Teams can't be loaded!</p> : <Spinner />;
   if (teamsArray.length) {
     content = (
       <>
         {teamsArray.map((team) => {
           const teamName = Object.keys(team)[0];
-          console.log(Object.keys(team)[0]);
           const teamMembers = Object.keys(team[teamName]);
-          // const parsedTeamMembers = teamMembers.map((member) =>
-          //   JSON.parse(member)
-          // );
-          // console.log(parsedTeamMembers);
           return (
             <TeamContainerStyled>
               <ListTitleStyled>{`Team: ${teamName}`}</ListTitleStyled>
@@ -86,28 +67,23 @@ const BoardIntro = () => {
       <TeamsWrapperStyled>
         {teamsData.loading && <Spinner />}
         {content}
-
-        {/* {teamsArray && teamsArray.map((team) => {
-    const teamName = Object.keys(team)[0];
-    console.log(Object.keys(team)[0]);
-    return (
-      <TeamContainerStyled>
-        <ListTitleStyled>{`Team: ${teamName}`}</ListTitleStyled>
-        <List list={Object.keys(team[teamName])} />
-      </TeamContainerStyled>
-    );
-  });} */}
       </TeamsWrapperStyled>
       <p>PLease continue to user details</p>
-      <Button
-        clicked={() => history.push(ROUTES.USER_DETAILS)}
-        btnType="Success"
-      >
-        Save and Next
-      </Button>
-      <Button clicked={() => dispatch(actions.resetTeams())} btnType="Danger">
-        Reset Teams
-      </Button>
+
+      <ButtonsWrapperStyled>
+        <ResetButtonStyled
+          clicked={() => dispatch(actions.resetTeams())}
+          btnType="Danger"
+        >
+          Reset Teams
+        </ResetButtonStyled>
+        <Button
+          clicked={() => history.push(ROUTES.USER_DETAILS)}
+          btnType="Success"
+        >
+          Save and Next
+        </Button>
+      </ButtonsWrapperStyled>
     </BoardWrapperStyled>
   );
 };
