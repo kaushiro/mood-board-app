@@ -7,6 +7,7 @@ import {
   authUserSaga,
   authCheckStateSaga,
 } from "./auth";
+import { fetchTeamsSaga } from "./teams";
 
 export function* watchAuth() {
   yield all([
@@ -15,4 +16,8 @@ export function* watchAuth() {
     takeEvery(actionTypes.AUTH_USER, authUserSaga),
     takeEvery(actionTypes.AUTH_CHECK_STATE, authCheckStateSaga),
   ]);
+}
+
+export function* watchTeams() {
+  yield takeEvery(actionTypes.FETCH_TEAMS, fetchTeamsSaga);
 }

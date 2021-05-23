@@ -7,10 +7,9 @@ export const setTeams = (teams) => {
   };
 };
 
-export const fetchTeamsSuccess = (teams) => {
+export const fetchTeamsSuccess = () => {
   return {
     type: actionTypes.FETCH_TEAMS_SUCCESS,
-    teams: teams,
   };
 };
 
