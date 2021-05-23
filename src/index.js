@@ -12,7 +12,7 @@ import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import authReducer from "./store/reducers/auth";
 import teamsReducer from "./store/reducers/teams";
-import { watchAuth, watchTeams } from "./store/sagas";
+import { watchAuth } from "./store/sagas";
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
@@ -32,8 +32,6 @@ const store = createStore(
 );
 
 sagaMiddleware.run(watchAuth);
-sagaMiddleware.run(watchTeams);
-
 const app = (
   <Provider store={store}>
     <BrowserRouter>

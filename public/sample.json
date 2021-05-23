@@ -1,0 +1,44 @@
+{
+  "teams": {
+    "red_team": {
+      "kim": {
+        "fullName": "kim U",
+        "moods": {
+          "01": "happy",
+          "02": "happy"
+        }
+      },
+      "matt": {
+        "fullName": "Matt Williams",
+        "moods": {
+          "01": "happy",
+          "02": "sad",
+          "03": "sad",
+          "04": "undefined"
+        }
+      }
+    },
+    "blue_team": {
+      "leo": {
+        "fullName": "Leo Williams",
+        "moods": {
+          "01": "happy",
+          "02": "happy",
+          "03": "sad",
+          "04": "undefined"
+        }
+      },
+      "steve": {
+        "fullName": "Steve Williams",
+        "moods": {
+          "01": "happy",
+          "02": "happy",
+          "03": "sad",
+          "04": "undefined",
+          "05": "sad",
+          "06": "undefined"
+        }
+      }
+    }
+  }
+}

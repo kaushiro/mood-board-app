@@ -16,5 +16,6 @@ export {
   fetchTeamsStart,
   fetchTeams,
   setTeams,
+  resetTeams,
   addTeamMember,
 } from "./teams";

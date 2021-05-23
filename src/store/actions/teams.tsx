@@ -32,6 +32,11 @@ export const fetchTeams = () => {
     type: actionTypes.FETCH_TEAMS,
   };
 };
+export const resetTeams = () => {
+  return {
+    type: actionTypes.RESET_TEAMS,
+  };
+};
 
 export const addTeamMember = (userTeam, userName, firstName, lastName) => {
   return {

@@ -54,6 +54,9 @@ const BoardIntro = () => {
       >
         Save and Next
       </Button>
+      <Button clicked={() => dispatch(actions.resetTeams())} btnType="Danger">
+        Reset Teams
+      </Button>
     </Aux>
   );
 };
