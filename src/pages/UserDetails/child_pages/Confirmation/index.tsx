@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-// import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import Input from "../../../../components/UI/Input/Input";
@@ -22,10 +21,7 @@ const Confirmation: React.FC<IProps> = ({ onPrevStep }) => {
   const { userData } = useContext(NewUserContext);
   const dispatch = useDispatch();
 
-  // console.log(userData);
-
   const submitHandler = (userData) => {
-    // events.preventDefault();
     dispatch(
       actions.addTeamMember(
         userData.userTeam,
@@ -34,11 +30,6 @@ const Confirmation: React.FC<IProps> = ({ onPrevStep }) => {
         userData.lastName
       )
     );
-    // props.onAuth(
-    //   userDetailsForm.email.value,
-    //   userDetailsForm.password.value,
-    //   isSignup
-    // );
   };
 
   return (

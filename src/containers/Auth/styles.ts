@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import Button from "../../components/UI/Button/Button";
-
 export const AuthContainerStyled = styled.div`
   margin: 20px auto;
   width: 100%;

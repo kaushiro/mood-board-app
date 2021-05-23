@@ -1,24 +1,76 @@
 import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../../shared/utility";
+import axios from "axios";
 
+const baseUrl =
+  "https://mood-board-db-default-rtdb.europe-west1.firebasedatabase.app";
+// const initialState = {
+//   teams: {
+//     red_team: {
+//       kim: {
+//         fullName: "kim U",
+//         moods: {
+//           "01": "happy",
+//           "02": "happy",
+//         },
+//       },
+//       matt: {
+//         fullName: "Matt Williams",
+//         moods: {
+//           "01": "happy",
+//           "02": "sad",
+//           "03": "sad",
+//           "04": "undefined",
+//         },
+//       },
+//     },
+//     blue_team: {
+//       leo: {
+//         fullName: "Leo Williams",
+//         moods: {
+//           "01": "happy",
+//           "02": "happy",
+//           "03": "sad",
+//           "04": "undefined",
+//         },
+//       },
+//       steve: {
+//         fullName: "Steve Williams",
+//         moods: {
+//           "01": "happy",
+//           "02": "happy",
+//           "03": "sad",
+//           "04": "undefined",
+//           "05": "sad",
+//           "06": "undefined",
+//         },
+//       },
+//     },
+//   },
+//   loading: false,
+//   error: null,
+// };
 const initialState = {
-  teams: [],
+  teams: {},
   loading: false,
   error: null,
-};
-const initialMemberState = {
-  team: null,
-  userName: null,
-  firstName: null,
-  lastName: null,
 };
 
 const setTeams = (state, action) => {
   console.log(action);
   return updateObject(state, {
-    teams: action.teams,
+    teams: [
+      { blue_team: action.teams.blue_team },
+      { red_team: action.teams.red_team },
+    ],
   });
 };
+// const fetchTeams = (state, action) => {
+//   const response = axios.get(baseUrl + "/teams.json");
+//   console.log(response);
+//   console.log(response.data);
+//   return updateObject(state, { teams: response.data });
+// };
 
 const fetchTeamsStart = (state, action) => {
   return updateObject(state, { error: null, loading: true });
@@ -26,16 +78,24 @@ const fetchTeamsStart = (state, action) => {
 
 const fetchTeamsSuccess = (state, action) => {
   return updateObject(state, {
-    list: action.teams,
     loading: false,
+    error: null,
   });
 };
 
 const fetchTeamsFailed = (state, action) => {
   return updateObject(state, { loading: false, error: action.error });
 };
+
 const addTeamMember = (state, action) => {
-  const updatedTeams = {
+  const newMember = {
+    fullName: [action.firstName] + " " + [action.lastName],
+  };
+  const teamUrl = baseUrl + `/teams/${action.userTeam}/${action.userName}.json`;
+  const response = axios.put(teamUrl, newMember);
+  console.log(response);
+  console.log(response.data);
+  return {
     ...state,
     teams: {
       ...state.teams,
@@ -44,39 +104,17 @@ const addTeamMember = (state, action) => {
         [action.userName]: {
           fullName: [action.firstName] + " " + [action.lastName],
         },
-        // [action.userName]: {
-        //   ...state.teams[action.userTeam][action.userName],
-        // },
       },
     },
   };
-  console.log(updatedTeams);
-  // const updatedTeams = updateObject(state.teams, updatedTeam);
-  // const updatedState = {
-  //   teams: updatedTeam,
-  // };
-  return updateObject(state, {
-    teams: updatedTeams,
-  });
 };
-
-// const addIngredient = (state, action) => {
-//   const updatedIngredient = {
-//     [action.ingredientName]: state.ingredients[action.ingredientName] + 1,
-//   };
-//   const updatedIngredients = updateObject(state.ingredients, updatedIngredient);
-//   const updatedState = {
-//     ingredients: updatedIngredients,
-//     totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
-//     building: true,
-//   };
-//   return updateObject(state, updatedState);
-// };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_TEAMS:
       return setTeams(state, action);
+    // case actionTypes.FETCH_TEAMS:
+    //   return fetchTeams(state, action);
     case actionTypes.FETCH_TEAMS_START:
       return fetchTeamsStart(state, action);
     case actionTypes.FETCH_TEAMS_SUCCESS:
@@ -85,6 +123,8 @@ const reducer = (state = initialState, action) => {
       return fetchTeamsFailed(state, action);
     case actionTypes.ADD_TEAM_MEMBER:
       return addTeamMember(state, action);
+    case actionTypes.RESET_TEAMS:
+      return initialState;
     default:
       return state;
   }

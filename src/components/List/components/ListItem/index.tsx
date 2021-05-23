@@ -1,20 +1,24 @@
 import React from "react";
 import Button from "../../../UI/Button/Button";
 
-import { TaskItemStyled } from "./styles";
+import { ListItemStyled } from "./styles";
 interface IProps {
-  label?: string;
-  labelValue?: string | null;
+  objectKey?: string;
+  objectValue?: string | any | null;
 }
 
-const TaskItem: React.FC<IProps> = ({ label, labelValue }) => {
+const ListItem: React.FC<IProps> = ({ objectKey, objectValue }) => {
+  // let stringifiedValue =
+  //   objectValue !== String ? JSON.stringify(objectValue) : objectValue;
+  //  typeof objectValue == Object && objectValue = JSON.stringify(objectValue);
+  const displayContent = objectValue
+    ? `${objectKey}: ${objectValue}`
+    : `${objectKey}`;
   return (
     <>
-      <TaskItemStyled>
-        <div>{`${label}: ${labelValue}`}</div>
-      </TaskItemStyled>
+      <ListItemStyled>{displayContent}</ListItemStyled>
     </>
   );
 };
 
-export default TaskItem;
+export default ListItem;
