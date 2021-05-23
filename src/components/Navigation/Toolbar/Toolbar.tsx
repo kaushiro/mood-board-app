@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import Logo from "../../Logo/Logo";
+import kWhiteLogo from "../../../assets/images/k_white.svg";
 import NavigationItems from "../NavigationItems/NavigationItems";
 import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
 
@@ -10,17 +11,25 @@ import {
   ToolbarLogoStyled,
   ToolbarNavStyled,
 } from "./styles";
-
-const Toolbar = (props: { drawerToggleClicked: any; isAuthenticated: any }) => (
+interface IProps {
+  drawerToggleClicked:
+    | ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void)
+    | undefined;
+  isAuthenticated: boolean;
+}
+const Toolbar: React.FC<IProps> = ({
+  drawerToggleClicked,
+  isAuthenticated,
+}) => (
   <ToolbarHeaderStyled>
-    <DrawerToggle clicked={props.drawerToggleClicked} />
+    <DrawerToggle clicked={drawerToggleClicked} />
     <ToolbarLogoStyled>
       <NavLink to={"/"}>
-        <Logo />
+        <Logo imgSrc={kWhiteLogo} />
       </NavLink>
     </ToolbarLogoStyled>
-    <ToolbarNavStyled className="DesktopOnly">
-      <NavigationItems isAuthenticated={props.isAuthenticated} />
+    <ToolbarNavStyled>
+      <NavigationItems isAuthenticated={isAuthenticated} />
     </ToolbarNavStyled>
   </ToolbarHeaderStyled>
 );

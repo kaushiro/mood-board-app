@@ -15,6 +15,8 @@ export const AuthContainerStyled = styled.div`
 `;
 export const AuthLogoStyled = styled.div`
   max-width: 15rem;
+  margin: 0 auto;
+  height: 15rem;
 `;
 export const SubmitButtonContainerStyled = styled.div`
   display: flex;

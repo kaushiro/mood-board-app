@@ -94,7 +94,7 @@ const addTeamMember = (state, action) => {
   const teamUrl = baseUrl + `/teams/${action.userTeam}/${action.userName}.json`;
   const response = axios.put(teamUrl, newMember);
   console.log(response);
-  console.log(response.data);
+  // console.log(response.data);
   return {
     ...state,
     teams: {

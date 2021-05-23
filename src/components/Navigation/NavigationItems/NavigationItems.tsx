@@ -1,19 +1,32 @@
 import React from "react";
+
 import NavigationItem from "./NavigationItem/NavigationItem";
 import { NavigationItemsStyled } from "./styles";
+import messages from "./messages";
 
-const NavigationItems = (props: { isAuthenticated: any }) => (
+interface IProps {
+  isAuthenticated: boolean;
+}
+const NavigationItems: React.FC<IProps> = ({ isAuthenticated }) => (
   <NavigationItemsStyled className="NavigationItems">
-    <NavigationItem link="/add_note" exact>
-      Add Notes
-    </NavigationItem>
-    {props.isAuthenticated ? (
-      <NavigationItem link="/intro">List</NavigationItem>
+    {isAuthenticated ? (
+      <NavigationItem link="/profile" exact>
+        {messages.addMemberLink.defaultMessage}
+      </NavigationItem>
     ) : null}
-    {!props.isAuthenticated ? (
-      <NavigationItem link="/auth">Log in</NavigationItem>
+    {isAuthenticated ? (
+      <NavigationItem link="/intro">
+        {messages.boardLink.defaultMessage}
+      </NavigationItem>
+    ) : null}
+    {!isAuthenticated ? (
+      <NavigationItem link="/auth">
+        {messages.loginLink.defaultMessage}
+      </NavigationItem>
     ) : (
-      <NavigationItem link="/logout">Logout</NavigationItem>
+      <NavigationItem link="/logout">
+        {messages.logoutLink.defaultMessage}
+      </NavigationItem>
     )}
   </NavigationItemsStyled>
 );

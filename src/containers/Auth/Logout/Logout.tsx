@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import * as actions from "../../../store/actions/index";
 
-const Logout = (props: { onLogout: any }) => {
+const Logout = () => {
   const dispatch = useDispatch();
   // const { onLogout } = props;
   useEffect(() => {

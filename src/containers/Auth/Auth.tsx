@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory, Redirect } from "react-router-dom";
 
-// import companyLogo from "../../assets/images/logo-primary.svg";
+import blackOwl from "../../assets/images/owl_black.svg";
+import Logo from "../../components/Logo/Logo";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import Spinner from "../../components/UI/Spinner/Spinner";
@@ -49,13 +50,21 @@ interface IFormFactoryProps {
   };
 }
 
-const Auth = (props: {
+interface IProps {
   onAuth?: any;
   loading?: any;
   error?: any;
   isAuthenticated?: any;
   authRedirectPath: any;
   onSetAuthRedirectPath?: any;
+}
+const Auth: React.FC<IProps> = ({
+  onAuth,
+  loading,
+  error,
+  isAuthenticated,
+  authRedirectPath,
+  onSetAuthRedirectPath,
 }) => {
   const [authForm, setAuthForm] = useState<IFormFactoryProps>({
     email: {
@@ -87,9 +96,8 @@ const Auth = (props: {
       touched: false,
     },
   });
-  const history = useHistory();
   const [isSignup, setSignUp] = useState(false);
-  const { authRedirectPath, onSetAuthRedirectPath } = props;
+
   useEffect(() => {
     authRedirectPath !== "/" && onSetAuthRedirectPath();
   }, [authRedirectPath, onSetAuthRedirectPath]);
@@ -113,7 +121,7 @@ const Auth = (props: {
 
   const submitHandler = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    props.onAuth(authForm.email.value, authForm.password.value, isSignup);
+    onAuth(authForm.email.value, authForm.password.value, isSignup);
   };
 
   const switchAuthModeHandler = () => {
@@ -141,40 +149,40 @@ const Auth = (props: {
     />
   ));
 
-  // if (props.loading) {
+  // if (loading) {
   //   form = <Spinner />;
   // }
 
   let errorMessage = null;
 
-  if (props.error) {
-    errorMessage = <p>{props.error.message}</p>;
+  if (error) {
+    errorMessage = <p>{error.message}</p>;
   }
 
   let authRedirect = null;
-  if (props.isAuthenticated) {
+  if (isAuthenticated) {
     // authRedirectPath("/intro");
     authRedirect = <Redirect to="/intro" />;
     // authRedirect = <Redirect to={"/burger"} />;
   }
-  console.log(props.onAuth);
+  console.log(onAuth);
   return (
     <AuthContainerStyled>
       {authRedirect}
       {errorMessage}
       <AuthLogoStyled>
-        {/* <img src={companyLogo} alt="companyLogo" /> */}
+        <Logo imgSrc={blackOwl} />
       </AuthLogoStyled>
       <form onSubmit={submitHandler}>
-        {props.loading ? <Spinner /> : form}
+        {loading ? <Spinner /> : form}
         <SubmitButtonContainerStyled>
           <Button btnType="Success" className="loginButton">
-            LOGIN
+            {!isSignup ? "LOGIN" : "SIGN UP"}
           </Button>
         </SubmitButtonContainerStyled>
       </form>
       <Button clicked={switchAuthModeHandler} btnType="Danger">
-        {!isSignup && "Sign up now"}
+        {!isSignup ? "Sign up now" : "Back to Login"}
       </Button>
     </AuthContainerStyled>
   );

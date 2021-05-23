@@ -1,10 +1,13 @@
 import React from "react";
 
-import SteppedProcessHeader from "./Header";
-import { ISteppedProcess } from "./types";
-import { StickyNavigationStyled, NavWrapperStyled } from "./styles";
-import StepsNavigation from "./StepsNavigation";
 import ContentWrapperStyled from "../../hoc/ContentWrapper";
+
+import Header from "./Header";
+import StepsProgress from "./StepsProgress";
+import { ISteppedProcess } from "./types";
+
+import { StepsProgressWrapper, XLargeTextStyled } from "./styles";
+import StepsNavigation from "./StepsNavigation";
 const SteppedProcess: React.FC<ISteppedProcess> = ({
   title,
   steps,
@@ -12,14 +15,20 @@ const SteppedProcess: React.FC<ISteppedProcess> = ({
   isLoading,
 }) => {
   const activeStep = steps[activeStepIndex];
-  console.log(activeStepIndex);
-  console.log(activeStep);
+  // console.log(activeStepIndex);
+  // console.log(activeStep);
   // const content = steps[activeStepIndex][content];
   // console.log(content);
 
   return (
     <>
-      <SteppedProcessHeader title={title} steps={steps} />
+      <Header qaid="stepped-proccess-header" isLoading={isLoading}>
+        {title && <XLargeTextStyled as="h1">{title}</XLargeTextStyled>}
+        <StepsProgressWrapper>
+          <StepsProgress steps={steps} />
+        </StepsProgressWrapper>
+      </Header>
+      {/* <SteppedProcessHeader title={title} steps={steps} /> */}
 
       {!isLoading && activeStep && (
         <ContentWrapperStyled>{activeStep.content}</ContentWrapperStyled>

@@ -29,54 +29,54 @@ const messages = {
     defaultMessage: "Add a team",
   },
   steppedProcessTitle: {
-    id: "pages.steppedProcess.steppedProcessTitle",
+    id: "pages.UserDetails.steppedProcessTitle",
     defaultMessage: "User Details",
   },
   validationMessages: {
     isRequired: {
-      id: "app.utils.validation.isRequired",
+      id: "pages.UserDetails.validation.isRequired",
       defaultMessage: "This field is required",
     },
   },
   form: {
     settingsFieldGroupLabel: {
-      id: "app.pages.OnboardingSteps.form.BasicDetails.settingsFieldGroupLabel",
+      id: "pages.UserDetails.form.settingsFieldGroupLabel",
       defaultMessage: "Basic Information",
     },
     titleField: {
-      id: "app.pages.OnboardingSteps.form.titleField",
+      id: "pages.UserDetails.form.titleField",
       defaultMessage: "Title",
     },
     titlePlaceholder: {
-      id: "app.pages.OnboardingSteps.form.titlePlaceholder",
+      id: "pages.UserDetails.form.titlePlaceholder",
       defaultMessage: "e.g. Welcome to Immersive Labs",
     },
     tooShort: {
-      id: "app.pages.OnboardingSteps.form.tooShort",
+      id: "pages.UserDetails.form.tooShort",
       defaultMessage: `Must be at least 4 characters`,
     },
     titleTooLong: {
-      id: "app.pages.OnboardingSteps.form.titleTooLong",
+      id: "pages.UserDetails.form.titleTooLong",
       defaultMessage: `Must not exceed 140 characters`,
     },
     descTooLong: {
-      id: "app.pages.OnboardingSteps.form.descTooLong",
+      id: "pages.UserDetails.form.descTooLong",
       defaultMessage: `Must not exceed 2000 characters`,
     },
     imageField: {
-      id: "app.pages.OnboardingSteps.form.imageField",
+      id: "pages.UserDetails.form.imageField",
       defaultMessage: "Cover Image",
     },
     descriptionField: {
-      id: "app.pages.OnboardingSteps.form.descriptionField",
+      id: "pages.UserDetails.form.descriptionField",
       defaultMessage: "Description",
     },
     saveAndNext: {
-      id: "app.pages.OnboardingSteps.form.save",
+      id: "pages.UserDetails.form.save",
       defaultMessage: "Save",
     },
     cancel: {
-      id: "app.pages.OnboardingSteps.form.cancel",
+      id: "pages.UserDetails.form.cancel",
       defaultMessage: "Cancel",
     },
   },

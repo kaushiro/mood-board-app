@@ -2,16 +2,18 @@ import React from "react";
 
 import { DrawerToggleContainerStyled } from "./styles";
 
-const drawerToggle = (props: {
+interface IProps {
   clicked:
     | ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void)
     | undefined;
-}) => (
-  <DrawerToggleContainerStyled onClick={props.clicked}>
+}
+
+const DrawerToggle: React.FC<IProps> = ({ clicked }) => (
+  <DrawerToggleContainerStyled onClick={clicked}>
     <div></div>
     <div></div>
     <div></div>
   </DrawerToggleContainerStyled>
 );
 
-export default drawerToggle;
+export default DrawerToggle;
