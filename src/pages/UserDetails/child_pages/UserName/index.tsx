@@ -50,7 +50,7 @@ const UserDetails: React.FC<IProps> = ({
 }) => {
   const { userData, setUserData } = useContext(NewUserContext);
 
-  console.log(userData);
+  // console.log(userData);
   const [userDetailsForm, setUserDetailsForm] = useState<IFormProps>({
     firstName: {
       label: "Please enter your first name",

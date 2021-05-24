@@ -66,6 +66,7 @@ export function* authCheckStateSaga(action) {
     );
     if (expirationDate <= new Date()) {
       yield put(actions.logout());
+      yield put(actions.setAuthRedirectPath("/"));
     } else {
       const userId = yield call([localStorage, "getItem"], "userId");
       // const userId = yield localStorage.getItem("userId");

@@ -10,6 +10,9 @@ interface UserDataState {
   firstName?: string;
   lastName?: string;
   userName?: string;
+  mood?: string;
+  time?: string;
+  isFirstTimUser?: boolean;
 }
 interface UserContextState {
   userData?: UserDataState;
@@ -26,6 +29,9 @@ const InitialUserContextState: UserDataState = {
   firstName: "",
   lastName: "",
   userName: "",
+  mood: "",
+  time: "",
+  isFirstTimUser: true,
 };
 const NewUserDefaultValue: UserContextState = {
   userData: InitialUserContextState,

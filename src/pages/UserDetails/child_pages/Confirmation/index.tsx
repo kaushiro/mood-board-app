@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import Input from "../../../../components/UI/Input/Input";
 import Button from "../../../../components/UI/Button/Button";
@@ -7,6 +8,7 @@ import List from "../../../../components/List";
 import { updateObject, checkValidity } from "../../../../shared/utility";
 import { NewUserContext } from "../../../../context/UserContext";
 import * as actions from "../../../../store/actions/index";
+import { ROUTES } from "../../../../shared/routes";
 
 import { ConfirmationStyled, SubmitButtonWrapperStyled } from "./styles";
 interface IProps {
@@ -18,11 +20,11 @@ interface IProps {
   onNextStep?: () => void;
 }
 const Confirmation: React.FC<IProps> = ({ onPrevStep }) => {
-  const { userData } = useContext(NewUserContext);
+  const { userData, setUserData } = useContext(NewUserContext);
   const userDataList = Object.entries(userData).map((entry) => {
     return entry[0] + ": " + entry[1];
   });
-
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const submitHandler = (userData) => {
@@ -31,9 +33,17 @@ const Confirmation: React.FC<IProps> = ({ onPrevStep }) => {
         userData.userTeam,
         userData.userName,
         userData.firstName,
-        userData.lastName
+        userData.lastName,
+        userData.mood,
+        userData.time,
+        history
       )
     );
+    userData.isFirstTimeUser &&
+      setUserData((state) => ({
+        ...state,
+        isFirstTimeUser: false,
+      }));
   };
 
   return (

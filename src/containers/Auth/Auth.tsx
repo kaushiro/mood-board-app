@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory, Redirect } from "react-router-dom";
@@ -8,9 +8,10 @@ import Logo from "../../components/Logo/Logo";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import Spinner from "../../components/UI/Spinner/Spinner";
-// import classes from "./Auth.css";
 import * as actions from "../../store/actions/index";
 import { updateObject, checkValidity } from "../../shared/utility";
+import { NewUserContext } from "../../context/UserContext";
+
 import {
   AuthContainerStyled,
   AuthLogoStyled,
@@ -97,6 +98,7 @@ const Auth: React.FC<IProps> = ({
     },
   });
   const [isSignup, setSignUp] = useState(false);
+  const { userData } = useContext(NewUserContext);
 
   useEffect(() => {
     authRedirectPath !== "/" && onSetAuthRedirectPath();
@@ -162,7 +164,9 @@ const Auth: React.FC<IProps> = ({
   let authRedirect = null;
   if (isAuthenticated) {
     // authRedirectPath("/intro");
-    authRedirect = <Redirect to="/intro" />;
+    authRedirect = (
+      <Redirect to={userData.isFirstTimUser ? "/intro" : "choose_mood"} />
+    );
     // authRedirect = <Redirect to={"/burger"} />;
   }
   console.log(onAuth);

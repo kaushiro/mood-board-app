@@ -13,9 +13,6 @@ import Button from "../../components/UI/Button/Button";
 import SteppedProcess from "../../components/SteppedProcess";
 import { IStep, ITask } from "../../components/SteppedProcess/types";
 import { SteppedProcessWrapperStyled } from "../../components/SteppedProcess/styles";
-import ChooseTeam from "./child_pages/ChooseTeam";
-import UserName from "./child_pages/UserName";
-import Confirmation from "./child_pages/Confirmation";
 import * as actions from "../../store/actions/index";
 import { ROUTES } from "../../shared/routes";
 import { resolveRoute } from "../../shared/URL";
@@ -23,13 +20,19 @@ import axios from "../../axios";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import { NewUserProvider } from "../../context/UserContext";
 
+import ChooseMood from "./child_pages/ChooseMood";
+import ChooseTeam from "./child_pages/ChooseTeam";
+import UserName from "./child_pages/UserName";
+import Confirmation from "./child_pages/Confirmation";
+
 import messages from "./messages";
 import { defineMessages } from "react-intl";
 
 export enum USER_DETAILS {
   CHOOSE_TEAM = 0,
   ADD_USERNAME = 1,
-  CONFIRM_DETAILS = 2,
+  CHOOSE_MOOD = 2,
+  CONFIRM_DETAILS = 3,
 }
 
 const UserDetails: React.FC = () => {
@@ -73,50 +76,45 @@ const UserDetails: React.FC = () => {
           disableBack={true}
           onNextStep={() => {
             setActiveStep(activeStep + 1);
-            history.push(ROUTES.ADD_DETAILS);
+            history.push(ROUTES.ADD_USERNAME);
           }}
         />
       ),
       isCompleted: activeStep > USER_DETAILS.CHOOSE_TEAM,
-      // nextStep: {
-      //   title: `Next`,
-      // onNextStep: () => {
-      //   setActiveStep(activeStep + 1);
-      //   history.push(ROUTES.ADD_DETAILS);
-      // },
-      // },
     },
     {
       title: messages.userNameStep.defaultMessage,
       description: messages.userNameDescription.defaultMessage,
       content: (
         <UserName
-          // disableBack={activeStep === 0}
           onPrevStep={() => {
             setActiveStep(activeStep - 1);
-            history.push(ROUTES.USER_DETAILS);
+            history.push(ROUTES.CHOOSE_TEAM);
           }}
           onNextStep={() => {
             setActiveStep(activeStep + 1);
-            history.push(ROUTES.ADD_DETAILS);
+            history.push(ROUTES.CHOOSE_MOOD);
           }}
         />
       ),
       isCompleted: activeStep > USER_DETAILS.ADD_USERNAME,
-      // prevStep: {
-      //   title: `Next`,
-      //   onPrevStep: () => {
-      //     setActiveStep(activeStep - 1);
-      //     history.push(ROUTES.USER_DETAILS);
-      //   },
-      // },
-      // nextStep: {
-      //   title: `Next: {listItems[i + 1].title}`,
-      //   onNextStep: () => {
-      //     setActiveStep(activeStep + 1);
-      //     history.push(ROUTES.ADD_DETAILS);
-      //   },
-      // },
+    },
+    {
+      title: messages.userNameStep.defaultMessage,
+      description: messages.userNameDescription.defaultMessage,
+      content: (
+        <ChooseMood
+          onPrevStep={() => {
+            setActiveStep(activeStep - 1);
+            history.push(ROUTES.ADD_USERNAME);
+          }}
+          onNextStep={() => {
+            setActiveStep(activeStep + 1);
+            history.push(ROUTES.CONFIRM_DETAILS);
+          }}
+        />
+      ),
+      isCompleted: activeStep > USER_DETAILS.CHOOSE_MOOD,
     },
     {
       title: messages.confirmStep.defaultMessage,
@@ -125,25 +123,11 @@ const UserDetails: React.FC = () => {
         <Confirmation
           onPrevStep={() => {
             setActiveStep(activeStep - 1);
-            history.push(ROUTES.ADD_DETAILS);
+            history.push(ROUTES.CHOOSE_MOOD);
           }}
         />
       ),
       isCompleted: activeStep > USER_DETAILS.CONFIRM_DETAILS,
-      // prevStep: {
-      //   title: `Next`,
-      //   onPrevStep: () => {
-      //     setActiveStep(activeStep - 1);
-      //     history.push(ROUTES.ADD_DETAILS);
-      //   },
-      // },
-      // nextStep: {
-      //   title: `Next: {listItems[i + 1].title}`,
-      //   onNextStep: () => {
-      //     setActiveStep(activeStep + 1);
-      //     history.push(ROUTES.ADD_DETAILS);
-      //   },
-      // },
     },
   ];
 

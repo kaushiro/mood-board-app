@@ -4,29 +4,25 @@
  * This contains all the text for the Footer component.
  */
 const messages = {
-  footer: {
-    id: "app.components.Footer.copyright",
-    defaultMessage: `Copyright ${new Date().getFullYear()} Immersive Labs | All Rights Reserved`,
+  appDescription: {
+    id: "app.components.Footer.appDescription",
+    defaultMessage: `Mood App | created by Kim Ushiro`,
   },
-  privacyNotice: {
-    id: "app.components.Footer.privacyNotice",
-    defaultMessage: "Privacy Notice",
+  linkedIn: {
+    id: "app.components.Footer.linkedIn",
+    defaultMessage: "linkedIn",
   },
-  termsOfUse: {
-    id: "app.components.Footer.termsOfUse",
-    defaultMessage: "Terms of Use",
+  gitHub: {
+    id: "app.components.Footer.gitHub",
+    defaultMessage: "gitHub",
   },
-  cookiePolicy: {
-    id: "app.components.Footer.cookiePolicy",
-    defaultMessage: "Cookie Policy",
+  codeSandBox: {
+    id: "app.components.Footer.codeSandBox",
+    defaultMessage: "codeSandBox",
   },
-  about: {
-    id: "app.components.Footer.about",
-    defaultMessage: "About",
-  },
-  help: {
-    id: "app.components.Footer.help",
-    defaultMessage: "Help and Support",
+  codePen: {
+    id: "app.components.Footer.codePen",
+    defaultMessage: "codePen",
   },
 };
 export default messages;

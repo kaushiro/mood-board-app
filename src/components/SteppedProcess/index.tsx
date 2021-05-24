@@ -6,7 +6,12 @@ import Header from "./Header";
 import StepsProgress from "./StepsProgress";
 import { ISteppedProcess } from "./types";
 
-import { StepsProgressWrapper, XLargeTextStyled } from "./styles";
+import {
+  StickyNavigationStyled,
+  NavWrapperStyled,
+  StepsProgressWrapper,
+  XLargeTextStyled,
+} from "./styles";
 import StepsNavigation from "./StepsNavigation";
 const SteppedProcess: React.FC<ISteppedProcess> = ({
   title,
@@ -15,8 +20,8 @@ const SteppedProcess: React.FC<ISteppedProcess> = ({
   isLoading,
 }) => {
   const activeStep = steps[activeStepIndex];
-  // console.log(activeStepIndex);
-  // console.log(activeStep);
+  console.log(activeStepIndex);
+  console.log(activeStep);
   // const content = steps[activeStepIndex][content];
   // console.log(content);
 

@@ -1,73 +1,63 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import PropTypes from "prop-types";
-
-import { ROUTES } from "../../shared/routes";
+import Clock from "react-live-clock";
 
 import messages from "./messages";
 import {
   FooterWrapperStyled,
   FooterRowContainerStyled,
   FooterLinksStyled,
-  StyledSmallTextStyled,
 } from "./styles";
 
-const Footer = ({ user, className, isSignIn }: any) => {
-  const isRingfenced = user && user.ringfenced;
-
+const Footer = () => {
   const links = [
     {
-      // path: ROUTES.PRIVACY_NOTICE,
-      text: messages.privacyNotice,
+      href: "https://www.linkedin.com/in/kaushiro",
+      text: messages.linkedIn.defaultMessage,
       target: "_blank",
-      rel: "noopener noreferrer",
+      rel: "external",
     },
     {
-      // path: ROUTES.TERMS_POLICY,
-      text: messages.termsOfUse,
+      href: "https://github.com/kaushiro",
+      text: messages.gitHub.defaultMessage,
       target: "_blank",
-      rel: "noopener noreferrer",
+      rel: "external",
     },
     {
-      // path: ROUTES.COOKIE_POLICY,
-      text: messages.cookiePolicy,
+      href:
+        "https://codesandbox.io/dashboard/home?workspace=237cc340-a7d6-41d2-bbcf-883bd011cca5",
+      text: messages.codeSandBox.defaultMessage,
       target: "_blank",
-      rel: "noopener noreferrer",
+      rel: "external",
     },
     {
-      path: "https://immersivelabs.com/",
-      text: messages.about,
+      href: "https://codepen.io/kaushiro",
+      text: messages.codePen.defaultMessage,
       target: "_blank",
-      rel: "noopener noreferrer",
-    },
-    {
-      // path: ROUTE / S.HELP,
-      text: messages.help,
-      isHidden: isSignIn || isRingfenced,
+      rel: "external",
     },
   ];
 
   return (
-    <FooterWrapperStyled className={`main-footer ${className}`}>
+    <FooterWrapperStyled className="main-footer">
       <FooterRowContainerStyled>
-        <p>{messages.footer}</p>
+        <Clock format={"HH:mm:ss"} ticking={true} timezone={"	Europe/London"} />
+        <p>{messages.appDescription.defaultMessage}</p>
       </FooterRowContainerStyled>
+      .
       <FooterRowContainerStyled>
         <nav>
           <FooterLinksStyled>
             {links.map((link) => {
-              if (link.isHidden) return;
-
               const props = {
                 target: link.target,
                 rel: link.rel,
-                // to: link.path,
-                "data-qaid": `link-footer-${link.text.defaultMessage}`,
+                to: link.href,
+                "data-qaid": `link-footer-${link.text}`,
               };
               return (
-                <NavLink key={link.path} to={link.path} {...props}>
+                <a key={link.href} href={link.href} {...props}>
                   <p>{link.text}</p>
-                </NavLink>
+                </a>
               );
             })}
           </FooterLinksStyled>
@@ -75,16 +65,6 @@ const Footer = ({ user, className, isSignIn }: any) => {
       </FooterRowContainerStyled>
     </FooterWrapperStyled>
   );
-};
-
-Footer.propTypes = {
-  className: PropTypes.string,
-  user: PropTypes.object,
-  isSignIn: PropTypes.bool,
-};
-
-Footer.defaultProps = {
-  isSignIn: false,
 };
 
 export { FooterWrapperStyled };
