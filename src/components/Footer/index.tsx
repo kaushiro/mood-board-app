@@ -23,8 +23,7 @@ const Footer = () => {
       rel: "external",
     },
     {
-      href:
-        "https://codesandbox.io/dashboard/home?workspace=237cc340-a7d6-41d2-bbcf-883bd011cca5",
+      href: "https://codesandbox.io/u/kaushiro",
       text: messages.codeSandBox.defaultMessage,
       target: "_blank",
       rel: "external",
@@ -43,7 +42,6 @@ const Footer = () => {
         <Clock format={"HH:mm:ss"} ticking={true} timezone={"	Europe/London"} />
         <p>{messages.appDescription.defaultMessage}</p>
       </FooterRowContainerStyled>
-      .
       <FooterRowContainerStyled>
         <nav>
           <FooterLinksStyled>

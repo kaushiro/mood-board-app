@@ -41,7 +41,7 @@ const ChooseMood: React.FC<IProps> = ({
   const chooseMood = (userMood: string) => {
     // let time = getTime();
     // const setMood: { [key: string]: string } = { time: userMood };
-    console.log(getTime());
+    // console.log(getTime());
     setUserData((state) => ({
       ...state,
       mood: userMood,

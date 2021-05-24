@@ -59,7 +59,7 @@ const initialState = {
 };
 
 const setTeams = (state, action) => {
-  console.log(action);
+  // console.log(action);
   return updateObject(state, {
     teams: [
       { blue_team: action.teams.blue_team },
