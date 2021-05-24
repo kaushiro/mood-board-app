@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Button from "../../components/UI/Button/Button";
+import { NavLink } from "react-router-dom";
 
 export const ListTitleStyled = styled.h3`
   font-size: 1.5em;
@@ -28,4 +29,8 @@ export const ButtonsWrapperStyled = styled.div`
 export const ResetButtonStyled = styled(Button)`
   font-size: 0.75rem;
   color: #ccc;
+`;
+
+export const NavLinkStyled = styled(NavLink)`
+  display: block;
 `;
