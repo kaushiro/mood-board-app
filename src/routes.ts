@@ -7,6 +7,8 @@ import ROUTES from "./shared/routes";
 import UserDetails from "./pages/UserDetails";
 import ChooseTeam from "./pages/UserDetails/child_pages/ChooseTeam";
 import UserName from "./pages/UserDetails/child_pages/UserName";
+import ChooseMood from "./pages/UserDetails/child_pages/ChooseMood";
+import Confirmation from "./pages/UserDetails/child_pages/Confirmation";
 
 const setLayout = (main: any, customUi = {}) => ({
   footer: Footer,
@@ -28,17 +30,30 @@ const userDetailsRoutes = [
     path: ROUTES.CHOOSE_TEAM,
     name: "Choose user team",
     components: setLayout(ChooseTeam, {
-      footer: null,
+      // footer: null,
     }),
   },
   {
-    path: ROUTES.ADD_DETAILS,
+    path: ROUTES.ADD_USERNAME,
     name: "Adding user details",
     components: setLayout(UserName, {
-      footer: null,
+      // footer: null,
     }),
   },
-
+  {
+    path: ROUTES.CHOOSE_MOOD,
+    name: "Adding user mood",
+    components: setLayout(ChooseMood, {
+      // footer: null,
+    }),
+  },
+  {
+    path: ROUTES.CONFIRM_DETAILS,
+    name: "Confirm User Details",
+    components: setLayout(Confirmation, {
+      // footer: null,
+    }),
+  },
   {
     path: ROUTES.USER_DETAILS,
     name: "All UserDetails",

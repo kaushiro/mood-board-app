@@ -9,6 +9,7 @@ import Auth from "./containers/Auth/Auth";
 
 import BoardIntro from "./containers/BoardIntro";
 import UserDetails from "./pages/UserDetails";
+import ChooseMood from "./pages/UserDetails/child_pages/ChooseMood";
 import Logout from "./containers/Auth/Logout/Logout";
 import * as actions from "./store/actions/index";
 import ROUTES from "./shared/routes";
@@ -36,7 +37,6 @@ const App: React.FC<IProps> = (props) => {
 
   let routes = (
     <Switch>
-      {/* <Route path="/burger" exact component={BurgerBuilder} /> */}
       <Route path="/auth" render={(props) => <Auth {...props} />} />
       <Route path="/" render={(props) => <Auth {...props} />} />
       <Redirect to="/" />
@@ -48,6 +48,7 @@ const App: React.FC<IProps> = (props) => {
       <Switch>
         <Route path="/logout" component={Logout} />
         <Route path="/intro" component={BoardIntro} />
+        <Route path="/choose_mood" component={ChooseMood} />
         <Route path="/profile" component={UserDetails} />
         <Route path="/auth" render={(props) => <Auth {...props} />} />
         <Route path="/" exact render={(props) => <Auth {...props} />} />

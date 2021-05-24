@@ -1,6 +1,8 @@
+import axios from "axios";
+
 import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../../shared/utility";
-import axios from "axios";
+import { userInfo } from "os";
 
 const baseUrl =
   "https://mood-board-db-default-rtdb.europe-west1.firebasedatabase.app";
@@ -90,11 +92,13 @@ const fetchTeamsFailed = (state, action) => {
 const addTeamMember = (state, action) => {
   const newMember = {
     fullName: [action.firstName] + " " + [action.lastName],
+    moods: { [action.time]: [action.mood] },
   };
   const teamUrl = baseUrl + `/teams/${action.userTeam}/${action.userName}.json`;
-  const response = axios.put(teamUrl, newMember);
-  console.log(response);
-  // console.log(response.data);
+  const response = axios
+    .put(teamUrl, newMember)
+    .then(() => action.history.push("/intro"));
+  // console.log(response);
   return {
     ...state,
     teams: {
@@ -103,11 +107,35 @@ const addTeamMember = (state, action) => {
         ...state.teams[action.userTeam],
         [action.userName]: {
           fullName: [action.firstName] + " " + [action.lastName],
+          moods: { [action.time]: [action.mood] },
         },
       },
     },
   };
 };
+
+// const addTeamMember = (state, action) => {
+//   const newMember = {
+//     fullName: [action.firstName] + " " + [action.lastName],
+//   };
+//   const teamMemberUrl =
+//     baseUrl + `/teams/${action.userTeam}/${action.userName}.json`;
+//   const response = axios.put(teamMemberUrl, newMember);
+//   console.log(response);
+//   // console.log(response.data);
+//   return {
+//     ...state,
+//     teams: {
+//       ...state.teams,
+//       [action.userTeam]: {
+//         ...state.teams[action.userTeam],
+//         [action.userName]: {
+//           fullName: [action.firstName] + " " + [action.lastName],
+//         },
+//       },
+//     },
+//   };
+// };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

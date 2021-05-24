@@ -6,7 +6,7 @@ import { ROUTES } from "../../../../shared/routes";
 import { resolveRoute } from "../../../../shared/URL";
 import { NewUserContext } from "../../../../context/UserContext";
 
-import { ChooseTeamStyled, SubmitButtonWrapperStyled } from "./styles";
+import { ChooseMoodStyled, SubmitButtonWrapperStyled } from "./styles";
 interface IProps {
   status?: string | null;
   disableBack?: boolean | undefined;
@@ -15,8 +15,15 @@ interface IProps {
   onPrevStep?: () => void;
   onNextStep?: () => void;
 }
-
-const ChooseTeam: React.FC<IProps> = ({
+interface IMood {
+  [key: string]: string;
+}
+const getTime = () => {
+  var d = new Date();
+  var t = d.toLocaleTimeString();
+  return t;
+};
+const ChooseMood: React.FC<IProps> = ({
   disableBack,
   disableNext,
   onPrevStep,
@@ -27,37 +34,41 @@ const ChooseTeam: React.FC<IProps> = ({
 
   console.log(userData);
   const onSetAuthRedirectPath = (): void => {
-    history.push({ pathname: ROUTES.ADD_USERNAME });
+    history.push({ pathname: ROUTES.CONFIRM_DETAILS });
     onNextStep();
   };
 
-  const chooseTeam = (teamName: string) => {
+  const chooseMood = (userMood: string) => {
+    // let time = getTime();
+    // const setMood: { [key: string]: string } = { time: userMood };
+    console.log(getTime());
     setUserData((state) => ({
       ...state,
-      userTeam: teamName,
+      mood: userMood,
+      time: getTime(),
     }));
     onNextStep();
   };
   return (
     <>
-      <ChooseTeamStyled>
+      <ChooseMoodStyled>
         <SubmitButtonWrapperStyled>
           <Button
             btnType="Danger"
-            className="redTeamButton"
-            clicked={() => chooseTeam("red_team")}
+            className="redMoodButton"
+            clicked={() => chooseMood("blue_Mood")}
           >
-            RED TEAM
+            RED Mood
           </Button>
           <Button
             btnType="Success"
-            className="blueTeamButton"
-            clicked={() => chooseTeam("blue_team")}
+            className="blueMoodButton"
+            clicked={() => chooseMood("blue_Mood")}
           >
-            BLUE TEAM
+            BLUE Mood
           </Button>
         </SubmitButtonWrapperStyled>
-      </ChooseTeamStyled>
+      </ChooseMoodStyled>
 
       <SubmitButtonWrapperStyled>
         <Button clicked={onSetAuthRedirectPath} btnType="Success">
@@ -68,4 +79,4 @@ const ChooseTeam: React.FC<IProps> = ({
   );
 };
 
-export default ChooseTeam;
+export default ChooseMood;

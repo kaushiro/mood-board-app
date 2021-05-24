@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Aux from "../Aux/Aux";
 import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
+import Footer from "../../components/Footer";
 
 import { MainContentContainerStyled } from "./styles";
 
@@ -32,6 +33,7 @@ const Layout: React.FC<IProps> = ({ isAuthenticated, children }) => {
         closed={sideDrawerClosedHandler}
       />
       <MainContentContainerStyled>{children}</MainContentContainerStyled>
+      <Footer />
     </Aux>
   );
 };

@@ -25,5 +25,5 @@ export const StepDetailStyled = styled.div`
 export const StepsProgressStepDescription = styled.p`
   margin: 0 auto 2rem;
   text-align: center;
-  color: "rgba(255, 255, 255, 0.2)";
+  color: #ffffff;
 `;

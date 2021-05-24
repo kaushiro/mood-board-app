@@ -40,7 +40,7 @@ const StepsProgressStepDetail: React.FC<IProps> = ({
     >
       <span>{value}</span>
     </StepCircleStyled>
-    {title && <StepTitleStyled as="h3">{title}</StepTitleStyled>}
+    {title && <StepTitleStyled as="h4">{title}</StepTitleStyled>}
   </StepDetailWrapperStyled>
 );
 

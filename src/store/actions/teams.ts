@@ -37,12 +37,23 @@ export const resetTeams = () => {
   };
 };
 
-export const addTeamMember = (userTeam, userName, firstName, lastName) => {
+export const addTeamMember = (
+  userTeam,
+  userName,
+  firstName,
+  lastName,
+  mood,
+  time,
+  history
+) => {
   return {
     type: actionTypes.ADD_TEAM_MEMBER,
     userTeam: userTeam,
     userName: userName,
     firstName: firstName,
     lastName: lastName,
+    mood: mood,
+    time: time,
+    history: history,
   };
 };
