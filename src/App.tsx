@@ -8,8 +8,10 @@ import Layout from "./hoc/Layout/Layout";
 import Auth from "./containers/Auth/Auth";
 
 import BoardIntro from "./containers/BoardIntro";
-import UserDetails from "./pages/UserDetails";
-import ChooseMood from "./pages/UserDetails/child_pages/ChooseMood";
+import UserDetails from "./pages/AddUser";
+import ChooseMood from "./pages/AddUser/child_pages/ChooseMood";
+import UserProfile from "./pages/UserProfile";
+import TeamProfile from "./pages/TeamProfile";
 import Logout from "./containers/Auth/Logout/Logout";
 import * as actions from "./store/actions/index";
 import ROUTES from "./shared/routes";
@@ -46,6 +48,8 @@ const App: React.FC<IProps> = (props) => {
   if (props.isAuthenticated) {
     routes = (
       <Switch>
+        <Route path="/team/:teamName/user/:userName" component={UserProfile} />
+        <Route path="/team/:teamName" component={TeamProfile} />
         <Route path="/logout" component={Logout} />
         <Route path="/intro" component={BoardIntro} />
         <Route path="/choose_mood" component={ChooseMood} />
@@ -59,8 +63,8 @@ const App: React.FC<IProps> = (props) => {
   return (
     <div>
       <Layout>
-        {routes}
-        {/* <Suspense fallback={<p>Loading...</p>}>{routes}</Suspense> */}
+        {/* {routes} */}
+        <Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>
       </Layout>
     </div>
   );

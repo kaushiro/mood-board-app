@@ -20,10 +20,6 @@ const SteppedProcess: React.FC<ISteppedProcess> = ({
   isLoading,
 }) => {
   const activeStep = steps[activeStepIndex];
-  console.log(activeStepIndex);
-  console.log(activeStep);
-  // const content = steps[activeStepIndex][content];
-  // console.log(content);
 
   return (
     <>

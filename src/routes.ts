@@ -4,11 +4,11 @@ import React from "react";
 
 import Footer from "./components/Footer";
 import ROUTES from "./shared/routes";
-import UserDetails from "./pages/UserDetails";
-import ChooseTeam from "./pages/UserDetails/child_pages/ChooseTeam";
-import UserName from "./pages/UserDetails/child_pages/UserName";
-import ChooseMood from "./pages/UserDetails/child_pages/ChooseMood";
-import Confirmation from "./pages/UserDetails/child_pages/Confirmation";
+import UserDetails from "./pages/AddUser";
+import ChooseTeam from "./pages/AddUser/child_pages/ChooseTeam";
+import UserName from "./pages/AddUser/child_pages/UserName";
+import ChooseMood from "./pages/AddUser/child_pages/ChooseMood";
+import Confirmation from "./pages/AddUser/child_pages/Confirmation";
 
 const setLayout = (main: any, customUi = {}) => ({
   footer: Footer,
