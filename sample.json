@@ -1,44 +1,68 @@
 {
-  "teams": {
-    "red_team": {
-      "kim": {
-        "fullName": "kim U",
-        "moods": {
-          "21:30:20": "happy",
-          "21:30:21": "happy"
+  "teams": [
+    {
+      "red_team": [
+        {
+          "userName": "kim",
+          "fullName": "kim U",
+          "moods": [
+            { "time": "21:30:20", "date": "Wed 26 May 2021", "mood": "happy" },
+            { "time": "21:30:20", "date": "Wed 26 May 2021", "mood": "happy" }
+          ]
+        },
+        {
+          "userName": "matt",
+          "fullName": "Matt Williams",
+          "moods": [
+            { "time": "21:30:20", "date": "Wed 26 May 2021", "mood": "happy" },
+            { "time": "21:30:20", "date": "Wed 26 May 2021", "mood": "happy" },
+            { "time": "21:30:20", "date": "Wed 26 May 2021", "mood": "sad" },
+            {
+              "time": "21:30:20",
+              "date": "Wed 26 May 2021",
+              "mood": "undefined"
+            }
+          ]
         }
-      },
-      "matt": {
-        "fullName": "Matt Williams",
-        "moods": {
-          "21:30:20": "happy",
-          "21:30:21": "sad",
-          "21:30:22": "sad",
-          "21:30:23": "undefined"
-        }
-      }
+      ]
     },
-    "blue_team": {
-      "leo": {
-        "fullName": "Leo Williams",
-        "moods": {
-          "21:30:20": "happy",
-          "21:30:21": "happy",
-          "21:30:22": "sad",
-          "21:30:23": "undefined"
+    {
+      "blue_team": [
+        {
+          "userName": "Leo",
+          "fullName": "Leo Williams",
+          "moods": [
+            { "time": "21:30:20", "date": "Wed 26 May 2021", "mood": "happy" },
+            { "time": "21:30:20", "date": "Wed 26 May 2021", "mood": "happy" },
+            { "time": "21:30:20", "date": "Wed 26 May 2021", "mood": "sad" },
+            {
+              "time": "21:30:20",
+              "date": "Wed 26 May 2021",
+              "mood": "undefined"
+            }
+          ]
+        },
+        {
+          "userName": "Steve",
+          "fullName": "Steve Williams",
+          "moods": [
+            { "time": "21:30:20", "date": "Wed 26 May 2021", "mood": "happy" },
+            { "time": "21:30:20", "date": "Wed 26 May 2021", "mood": "happy" },
+            { "time": "21:30:20", "date": "Wed 26 May 2021", "mood": "sad" },
+            {
+              "time": "21:30:20",
+              "date": "Wed 26 May 2021",
+              "mood": "undefined"
+            },
+            { "time": "21:30:20", "date": "Wed 26 May 2021", "mood": "sad" },
+            {
+              "time": "21:30:20",
+              "date": "Wed 26 May 2021",
+              "mood": "undefined"
+            }
+          ]
         }
-      },
-      "steve": {
-        "fullName": "Steve Williams",
-        "moods": {
-          "21:30:20": "happy",
-          "21:30:21": "happy",
-          "21:30:22": "sad",
-          "21:30:23": "undefined",
-          "21:30:24": "sad",
-          "21:30:25": "undefined"
-        }
-      }
+      ]
     }
-  }
+  ]
 }

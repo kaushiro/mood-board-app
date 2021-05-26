@@ -12,21 +12,9 @@ import UserDetails from "./pages/AddUser";
 import ChooseMood from "./pages/AddUser/child_pages/ChooseMood";
 import UserProfile from "./pages/UserProfile";
 import TeamProfile from "./pages/TeamProfile";
+import NewMood from "./pages/NewMood";
 import Logout from "./containers/Auth/Logout/Logout";
 import * as actions from "./store/actions/index";
-import ROUTES from "./shared/routes";
-
-// const Checkout = React.lazy(() => {
-//   return import("./containers/Checkout/Checkout");
-// });
-
-// const Orders = React.lazy(() => {
-//   return import("./containers/Orders/Orders");
-// });
-
-// const Auth = React.lazy(() => {
-//   return import("./containers/Auth/Auth");
-// });
 interface IProps {
   onTryAutoSignup: any;
   isAuthenticated: boolean;
@@ -48,8 +36,12 @@ const App: React.FC<IProps> = (props) => {
   if (props.isAuthenticated) {
     routes = (
       <Switch>
-        <Route path="/team/:teamName/user/:userName" component={UserProfile} />
-        <Route path="/team/:teamName" component={TeamProfile} />
+        <Route
+          path="/teams/:teamName/user/:userName/add/mood"
+          component={NewMood}
+        />
+        <Route path="/teams/:teamName/user/:userName" component={UserProfile} />
+        <Route path="/teams/:teamName" component={TeamProfile} />
         <Route path="/logout" component={Logout} />
         <Route path="/intro" component={BoardIntro} />
         <Route path="/choose_mood" component={ChooseMood} />
@@ -63,7 +55,6 @@ const App: React.FC<IProps> = (props) => {
   return (
     <div>
       <Layout>
-        {/* {routes} */}
         <Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>
       </Layout>
     </div>

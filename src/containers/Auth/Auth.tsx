@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { connect } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useHistory, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import blackOwl from "../../assets/images/owl_black.svg";
 import Logo from "../../components/Logo/Logo";
 import Input from "../../components/UI/Input/Input";
-import Button from "../../components/UI/Button/Button";
+import Button from "../../components/UI/Button";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import * as actions from "../../store/actions/index";
 import { updateObject, checkValidity } from "../../shared/utility";
@@ -151,10 +150,6 @@ const Auth: React.FC<IProps> = ({
     />
   ));
 
-  // if (loading) {
-  //   form = <Spinner />;
-  // }
-
   let errorMessage = null;
 
   if (error) {
@@ -163,13 +158,8 @@ const Auth: React.FC<IProps> = ({
 
   let authRedirect = null;
   if (isAuthenticated) {
-    // authRedirectPath("/intro");
-    authRedirect = (
-      <Redirect to={userData.isFirstTimUser ? "/intro" : "choose_mood"} />
-    );
-    // authRedirect = <Redirect to={"/burger"} />;
+    authRedirect = <Redirect to={"/intro"} />;
   }
-  console.log(onAuth);
   return (
     <AuthContainerStyled>
       {authRedirect}
@@ -180,14 +170,18 @@ const Auth: React.FC<IProps> = ({
       <form onSubmit={submitHandler}>
         {loading ? <Spinner /> : form}
         <SubmitButtonContainerStyled>
-          <Button btnType="Success" className="loginButton">
-            {!isSignup ? "LOGIN" : "SIGN UP"}
-          </Button>
+          <Button
+            btnType="Success"
+            className="loginButton"
+            text={!isSignup ? "LOGIN" : "SIGN UP"}
+          />
         </SubmitButtonContainerStyled>
       </form>
-      <Button clicked={switchAuthModeHandler} btnType="Danger">
-        {!isSignup ? "Sign up now" : "Back to Login"}
-      </Button>
+      <Button
+        onClick={switchAuthModeHandler}
+        btnType="Danger"
+        text={!isSignup ? "Sign up now" : "Back to Login"}
+      />
     </AuthContainerStyled>
   );
 };

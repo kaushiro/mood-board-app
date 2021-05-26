@@ -1,8 +1,7 @@
 import React, { useState, useContext } from "react";
-// import { useLocation } from "react-router-dom";
 
 import Input from "../../../../components/UI/Input/Input";
-import Button from "../../../../components/UI/Button/Button";
+import Button from "../../../../components/UI/Button";
 import Spinner from "../../../../components/UI/Spinner/Spinner";
 import { updateObject, checkValidity } from "../../../../shared/utility";
 import { NewUserContext } from "../../../../context/UserContext";
@@ -10,8 +9,6 @@ import { isValidUserName, isValidName } from "../../constants";
 
 import { UserDetailsStyled, SubmitButtonWrapperStyled } from "./styles";
 
-// const inputFields = ["firstName", "lastName", "userName"];
-// export type IFormValue = string | number | boolean;
 interface InputType {
   label: string;
   elementType: string;
@@ -35,22 +32,11 @@ interface IFormProps {
   userName: InputType;
 }
 interface IProps {
-  status?: string | null;
-  disableBack?: boolean | undefined;
-  disableNext?: boolean | undefined;
-  isDisabled?: boolean | null;
   onPrevStep?: () => void;
   onNextStep?: () => void;
 }
-const UserDetails: React.FC<IProps> = ({
-  disableBack,
-  disableNext,
-  onPrevStep,
-  onNextStep,
-}) => {
-  const { userData, setUserData } = useContext(NewUserContext);
-
-  // console.log(userData);
+const UserDetails: React.FC<IProps> = ({ onPrevStep, onNextStep }) => {
+  const { setUserData } = useContext(NewUserContext);
   const [userDetailsForm, setUserDetailsForm] = useState<IFormProps>({
     firstName: {
       label: "Please enter your first name",
@@ -98,6 +84,7 @@ const UserDetails: React.FC<IProps> = ({
       touched: false,
     },
   });
+
   const inputChangedHandler = (
     event: { target: { value: any } },
     controlName: string
@@ -154,12 +141,12 @@ const UserDetails: React.FC<IProps> = ({
     <>
       <UserDetailsStyled>{form}</UserDetailsStyled>
       <SubmitButtonWrapperStyled>
-        <Button clicked={onPrevStep} btnType="Secondary">
-          Back
-        </Button>
-        <Button clicked={submitHandler} btnType="Success">
-          Save and Next
-        </Button>
+        <Button onClick={onPrevStep} btnType="Secondary" text={"Back"} />
+        <Button
+          onClick={submitHandler}
+          btnType="Success"
+          text={"Save and Next"}
+        />
       </SubmitButtonWrapperStyled>
     </>
   );

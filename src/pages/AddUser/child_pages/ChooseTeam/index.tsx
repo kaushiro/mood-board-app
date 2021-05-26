@@ -1,40 +1,33 @@
-import React, { useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useContext } from "react";
+import { useSelector } from "react-redux";
 
-import Button from "../../../../components/UI/Button/Button";
-import { ROUTES } from "../../../../shared/routes";
-import { resolveRoute } from "../../../../shared/URL";
+import Button from "../../../../components/UI/Button";
 import { NewUserContext } from "../../../../context/UserContext";
 
 import { ChooseTeamStyled, SubmitButtonWrapperStyled } from "./styles";
 interface IProps {
-  status?: string | null;
   disableBack?: boolean | undefined;
-  disableNext?: boolean | undefined;
-  isDisabled?: boolean | null;
-  onPrevStep?: () => void;
   onNextStep?: () => void;
 }
 
-const ChooseTeam: React.FC<IProps> = ({
-  disableBack,
-  disableNext,
-  onPrevStep,
-  onNextStep,
-}) => {
-  const history = useHistory();
-  const { userData, setUserData } = useContext(NewUserContext);
+const ChooseTeam: React.FC<IProps> = ({ disableBack, onNextStep }) => {
+  const { setUserData } = useContext(NewUserContext);
 
-  console.log(userData);
-  const onSetAuthRedirectPath = (): void => {
-    history.push({ pathname: ROUTES.ADD_USERNAME });
-    onNextStep();
-  };
+  const allTeamsArray = useSelector((state: any) => {
+    return Array.from(state.team?.teams);
+  });
 
-  const chooseTeam = (teamName: string) => {
+  const chooseTeam = (teamName: string, teamIndex: number) => {
+    const team = allTeamsArray.filter(
+      (team) => Object.keys(team)[0] == teamName
+    )[0][teamName];
+    const nextMemberIndex = team.length;
+    console.log(team);
     setUserData((state) => ({
       ...state,
+      teamIndex: teamIndex,
       userTeam: teamName,
+      userIndex: nextMemberIndex,
     }));
     onNextStep();
   };
@@ -45,24 +38,21 @@ const ChooseTeam: React.FC<IProps> = ({
           <Button
             btnType="Danger"
             className="redTeamButton"
-            clicked={() => chooseTeam("red_team")}
-          >
-            RED TEAM
-          </Button>
+            onClick={() => chooseTeam("red_team", 0)}
+            text={"RED TEAM"}
+          />
           <Button
             btnType="Success"
             className="blueTeamButton"
-            clicked={() => chooseTeam("blue_team")}
-          >
-            BLUE TEAM
-          </Button>
+            onClick={() => chooseTeam("blue_team", 1)}
+            text={"BLUE TEAM"}
+          />
         </SubmitButtonWrapperStyled>
       </ChooseTeamStyled>
 
       <SubmitButtonWrapperStyled>
-        <Button clicked={onSetAuthRedirectPath} btnType="Success">
-          Save and Next
-        </Button>
+        <Button disabled={disableBack} btnType="Secondary" text={"Back"} />
+        <Button onClick={onNextStep} btnType="Success" text={"Save and Next"} />
       </SubmitButtonWrapperStyled>
     </>
   );

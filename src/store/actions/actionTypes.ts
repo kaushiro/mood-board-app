@@ -16,3 +16,5 @@ export const FETCH_TEAMS_SUCCESS = "FETCH_TEAMS_SUCCESS";
 export const FETCH_TEAMS_FAILED = "FETCH_TEAMS_FAILED";
 export const ADD_TEAM_MEMBER = "ADD_TEAM_MEMBER";
 export const RESET_TEAMS = "RESET_TEAMS";
+
+export const ADD_MOOD = "ADD_MOOD";

@@ -1,81 +1,91 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
-import Button from "../../../../components/UI/Button/Button";
-import { ROUTES } from "../../../../shared/routes";
-import { resolveRoute } from "../../../../shared/URL";
+import Aux from "../../../../hoc/Aux/Aux";
+import Button from "../../../../components/UI/Button";
 import { NewUserContext } from "../../../../context/UserContext";
-
-import { ChooseMoodStyled, SubmitButtonWrapperStyled } from "./styles";
+import Modal from "../../../../components/UI/Modal ";
+import Card from "../../../../components/Card";
+import CardHeader from "../../../../components/Card/components/CardHeader";
+import CardBody from "../../../../components/Card/components/CardBody";
+import {
+  ChooseMoodStyled,
+  SubmitButtonWrapperStyled,
+  ButtonStyled,
+} from "./styles";
 interface IProps {
-  status?: string | null;
-  disableBack?: boolean | undefined;
-  disableNext?: boolean | undefined;
-  isDisabled?: boolean | null;
   onPrevStep?: () => void;
   onNextStep?: () => void;
 }
-interface IMood {
-  [key: string]: string;
-}
-const getTime = () => {
-  var d = new Date();
-  var t = d.toLocaleTimeString();
-  return t;
-};
-const ChooseMood: React.FC<IProps> = ({
-  disableBack,
-  disableNext,
-  onPrevStep,
-  onNextStep,
-}) => {
-  const history = useHistory();
-  const { userData, setUserData } = useContext(NewUserContext);
 
-  console.log(userData);
-  const onSetAuthRedirectPath = (): void => {
-    history.push({ pathname: ROUTES.CONFIRM_DETAILS });
-    onNextStep();
+const moodPoints = [{ 0: "sad" }, { 50: "neutral" }, { 100: "happy" }];
+
+const ChooseMood: React.FC<IProps> = ({ onPrevStep, onNextStep }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [activeMood, setActiveMood] = useState("");
+  const { setUserData } = useContext(NewUserContext);
+
+  const confirmMood = (mood: string) => {
+    setActiveMood(mood);
+    setModalOpen(true);
   };
 
   const chooseMood = (userMood: string) => {
-    // let time = getTime();
-    // const setMood: { [key: string]: string } = { time: userMood };
-    // console.log(getTime());
     setUserData((state) => ({
       ...state,
       mood: userMood,
-      time: getTime(),
     }));
     onNextStep();
   };
+  const dateArray = new Date().toString().split(" ");
+  const dayOfWeek = () => {
+    return dateArray[0];
+  };
+  const getDate = () => {
+    return dateArray[2] + " " + dateArray[1] + " " + dateArray[3];
+  };
   return (
-    <>
+    <Aux>
       <ChooseMoodStyled>
-        <SubmitButtonWrapperStyled>
-          <Button
-            btnType="Danger"
-            className="redMoodButton"
-            clicked={() => chooseMood("blue_Mood")}
-          >
-            RED Mood
-          </Button>
-          <Button
-            btnType="Success"
-            className="blueMoodButton"
-            clicked={() => chooseMood("blue_Mood")}
-          >
-            BLUE Mood
-          </Button>
-        </SubmitButtonWrapperStyled>
+        <Card>
+          <CardHeader title={dayOfWeek()} description={getDate()} />
+          <CardBody title={"how are you feeling today?"} />
+          <SubmitButtonWrapperStyled>
+            {moodPoints.map((moodItem) => {
+              const mood = Object.values(moodItem)[0];
+              console.log(Object.values(moodItem)[0]);
+              return (
+                <ButtonStyled
+                  btnType={mood}
+                  className={`${mood}Button`}
+                  onClick={() => confirmMood(mood)}
+                  text={mood}
+                />
+              );
+            })}
+          </SubmitButtonWrapperStyled>
+          <Modal show={isModalOpen}>
+            <p>{`Are you sure you want to select ${activeMood}?`}</p>
+            <>
+              <Button
+                btnType={"Danger"}
+                onClick={() => setModalOpen(false)}
+                text={"Cancel"}
+              />
+              <Button
+                btnType={"Success"}
+                onClick={() => chooseMood(activeMood)}
+                text={`Confirm ${activeMood}`}
+              />
+            </>
+          </Modal>
+        </Card>
       </ChooseMoodStyled>
 
       <SubmitButtonWrapperStyled>
-        <Button clicked={onSetAuthRedirectPath} btnType="Success">
-          Save and Next
-        </Button>
+        <Button onClick={onPrevStep} btnType="Secondary" text={"Back"} />
+        <Button onClick={onNextStep} btnType="Success" text={"Save and Next"} />
       </SubmitButtonWrapperStyled>
-    </>
+    </Aux>
   );
 };
 

@@ -4,9 +4,10 @@ import React, {
   Dispatch,
   SetStateAction,
 } from "react";
-
 interface UserDataState {
+  teamIndex?: number;
   userTeam?: string;
+  userIndex?: number;
   firstName?: string;
   lastName?: string;
   userName?: string;
@@ -18,14 +19,10 @@ interface UserContextState {
   userData?: UserDataState;
   setUserData?: Dispatch<SetStateAction<UserDataState>>;
 }
-// enum InitialUserContextState {
-//   userTeam = "",
-//   firstName = "",
-//   lastName = "",
-//   userName = "",
-// }
 const InitialUserContextState: UserDataState = {
+  teamIndex: 0,
   userTeam: "",
+  userIndex: 0,
   firstName: "",
   lastName: "",
   userName: "",
@@ -43,6 +40,7 @@ const NewUserProvider: React.FC<{}> = ({ children }) => {
   const [userData, setUserData] = useState<UserDataState>(
     InitialUserContextState
   );
+
   return (
     <NewUserContext.Provider value={{ userData, setUserData }}>
       {children}

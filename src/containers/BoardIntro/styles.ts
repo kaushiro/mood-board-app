@@ -1,10 +1,13 @@
 import styled from "styled-components";
-import Button from "../../components/UI/Button/Button";
+import Button from "../../components/UI/Button";
 import { NavLink } from "react-router-dom";
 
 export const ListTitleStyled = styled.h3`
   font-size: 1.5em;
   text-align: center;
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const TeamsWrapperStyled = styled.div`
