@@ -1,21 +1,12 @@
-import React, { useState, useEffect, useCallback, createContext } from "react";
-import {
-  connect,
-  useDispatch,
-  useSelector,
-  TypedUseSelectorHook,
-} from "react-redux";
+import React, { useState, useEffect, useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import snakeCase from "lodash/snakeCase";
 
-import Aux from "../../hoc/Aux/Aux";
-import Button from "../../components/UI/Button/Button";
 import SteppedProcess from "../../components/SteppedProcess";
 import { IStep, ITask } from "../../components/SteppedProcess/types";
 import { SteppedProcessWrapperStyled } from "../../components/SteppedProcess/styles";
 import * as actions from "../../store/actions/index";
 import { ROUTES } from "../../shared/routes";
-import { resolveRoute } from "../../shared/URL";
 import axios from "../../axios";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import { NewUserProvider } from "../../context/UserContext";
@@ -38,16 +29,7 @@ export enum USER_DETAILS {
 const UserDetails: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-
   const [activeStep, setActiveStep] = useState(0);
-
-  // const listTeams = useSelector((state: any) => {
-  //   return state.teams;
-  // });
-
-  // const error = useSelector((state: any) => {
-  //   return state.teams.error;
-  // });
 
   const onFetchTeams = useCallback(() => dispatch(actions.fetchTeams()), [
     dispatch,
@@ -55,17 +37,6 @@ const UserDetails: React.FC = () => {
   useEffect(() => {
     onFetchTeams();
   }, [onFetchTeams]);
-
-  // const onSetAuthRedirectPath = (newTeamId?: string): void => {
-  //   history.push(
-  //     resolveRoute(ROUTES.PROFILE, {
-  //       teamId: newTeamId,
-  //     })
-  //   );
-  //   // history.push(`tasks/?step=${step}`);
-  // };
-
-  // let list = error ? <p>List can't be loaded!</p> : <Spinner />;
 
   const steps = [
     {
@@ -132,18 +103,16 @@ const UserDetails: React.FC = () => {
   ];
 
   return (
-    <Aux>
-      <NewUserProvider>
-        <SteppedProcessWrapperStyled>
-          <SteppedProcess
-            title={messages.steppedProcessTitle.defaultMessage}
-            steps={steps}
-            activeStepIndex={activeStep}
-            isLoading={false}
-          />
-        </SteppedProcessWrapperStyled>
-      </NewUserProvider>
-    </Aux>
+    <NewUserProvider>
+      <SteppedProcessWrapperStyled>
+        <SteppedProcess
+          title={messages.steppedProcessTitle.defaultMessage}
+          steps={steps}
+          activeStepIndex={activeStep}
+          isLoading={false}
+        />
+      </SteppedProcessWrapperStyled>
+    </NewUserProvider>
   );
 };
 

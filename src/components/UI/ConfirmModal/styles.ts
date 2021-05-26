@@ -1,12 +1,7 @@
 import styled, { css } from "styled-components";
 
-import mixins from "../../../shared/mixins";
-
-import { BACKGROUND_FADE_DURATION_MS, TINY_SCREEN_WIDTH } from "./constants";
-
 interface IModalWrapperStyled {
-  isVisible: boolean;
-  hasFluidWidth?: boolean;
+  isVisible?: boolean;
 }
 export const ModalWrapperStyled = styled.div<IModalWrapperStyled>`
   position: fixed;
@@ -25,39 +20,15 @@ export const ModalWrapperStyled = styled.div<IModalWrapperStyled>`
       display: flex;
       align-items: flex-end;
       z-index: 9000;
-      @media only screen and (min-width: ${TINY_SCREEN_WIDTH}) {
+      @media only screen and (min-width: 40rem) {
         align-items: center;
       }
     `}
-
-  .modal-inner {
-    background: #ffffff;
-    border-radius: 4px 4px 0 0;
-    max-height: 98%;
-    width: 100%;
-    overflow: auto;
-    z-index: 2;
-    @media only screen and (min-width: ${TINY_SCREEN_WIDTH}) {
-      border-radius: 4px;
-      max-height: calc(100vh -2rem -2rem);
-      ${({ hasFluidWidth }) =>
-        hasFluidWidth
-          ? css`
-              min-width: calc(${TINY_SCREEN_WIDTH} - 2rem});
-              max-width: 98vw;
-              width: auto;
-            `
-          : css`
-              max-width: 40rem;
-            `}
-    }
-  }
 `;
 
 export const ModalBackgroundStyled = styled.div<IModalWrapperStyled>`
-  transition: opacity ${BACKGROUND_FADE_DURATION_MS}ms ease-in;
+  transition: opacity 300ms ease-in;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
-  background: ${mixins.hex2rgba("#000000", 0.6)};
   position: fixed;
   top: 0;
   left: 0;
@@ -67,7 +38,7 @@ export const ModalBackgroundStyled = styled.div<IModalWrapperStyled>`
 `;
 
 export const ModalHeaderStyled = styled.div`
-  border-bottom: 1px solid #a4afbd;
+  border-bottom: 1px solid "#cfd5de";
   padding: 1rem;
   position: relative;
 `;
@@ -78,32 +49,21 @@ export const ModalHeaderInnerStyled = styled.div`
   width: calc(100% - 2rem);
 `;
 
-export const ModalHeaderIconStyled = styled.div`
-  background: #42505c;
-  border-radius: 100%;
-  color: #21251a;
-  margin-right: 0.5rem;
-  padding: 0.5rem;
-  svg {
-    vertical-align: middle;
-  }
-`;
-
 export const ModalHeaderContentStyled = styled.div`
   flex: 1;
 `;
 
-export const ModalTitleStyled = styled.p`
+export const ModalTitleStyled = styled.h4`
   white-space: normal;
   word-break: break-word;
   font-weight: 700;
-  color: #21251a;
+  color: #000;
 `;
 
 export const CloseButtonStyled = styled.button`
   background: none;
   border: none;
-  color: #21251a;
+  color: #000;
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -117,7 +77,7 @@ export const CloseButtonStyled = styled.button`
 `;
 
 export const ModalHeroImageStyled = styled.div`
-  background-color: #42505c;
+  background-color: "#f7faff";
   img {
     display: inline-block;
     object-fit: cover;
@@ -125,13 +85,13 @@ export const ModalHeroImageStyled = styled.div`
   }
 `;
 
-export const ModalContentStyled = styled.div<{ hasFullWidthContent: boolean }>`
-  padding: ${({ hasFullWidthContent }) => (hasFullWidthContent ? 0 : "1rem")};
+export const ModalContentStyled = styled.div`
+  padding: 1rem;
 `;
 
 export const ModalFooterStyled = styled.div`
-  background: ${(props) => props.theme.palette.modalFooterBackground};
-  border-radius: 0 0 4px 4px;
+  background: "#f7faff";
+  border-radius: ${({ theme }) => `0 0 4px 4px`};
   display: flex;
   padding: 1rem;
 

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import Input from "../../../../components/UI/Input/Input";
-import Button from "../../../../components/UI/Button/Button";
+import Button from "../../../../components/UI/Button";
 import List from "../../../../components/List";
 import { updateObject, checkValidity } from "../../../../shared/utility";
 import { NewUserContext } from "../../../../context/UserContext";
@@ -27,15 +27,36 @@ const Confirmation: React.FC<IProps> = ({ onPrevStep }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const getTime = () => {
+    var dateArray = new Date().toString().split(" ");
+    return (
+      dateArray[0] +
+      " " +
+      dateArray[2] +
+      " " +
+      dateArray[1] +
+      " " +
+      dateArray[3]
+    );
+  };
+  // const options = {
+  //   weekday: "long",
+  //   year: "numeric",
+  //   month: "long",
+  //   day: "numeric",
+  // };
+  // const customDate = new Date().toLocaleTimeString("en-us", options);
   const submitHandler = (userData) => {
     dispatch(
       actions.addTeamMember(
+        userData.teamIndex,
         userData.userTeam,
+        userData.userIndex,
         userData.userName,
         userData.firstName,
         userData.lastName,
         userData.mood,
-        userData.time,
+        getTime(),
         history
       )
     );
@@ -53,12 +74,12 @@ const Confirmation: React.FC<IProps> = ({ onPrevStep }) => {
       </ConfirmationStyled>
 
       <SubmitButtonWrapperStyled>
-        <Button clicked={onPrevStep} btnType="Secondary">
-          Back
-        </Button>
-        <Button clicked={() => submitHandler(userData)} btnType="Success">
-          Confirm
-        </Button>
+        <Button onClick={onPrevStep} btnType="Secondary" text={"Back"} />
+        <Button
+          onClick={() => submitHandler(userData)}
+          btnType="Success"
+          text={"Confirm"}
+        />
       </SubmitButtonWrapperStyled>
     </>
   );

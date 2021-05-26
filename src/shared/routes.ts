@@ -6,12 +6,12 @@ export const PARTIALS = {
   MOOD: "/mood",
   NEW: "/new",
   PROFILE: "/profile",
-  PROFILE_ID: "/:profileId",
   TEAM_ID: "/:teamId",
   TEAMS: "/teams",
   USER_DETAILS: "/user_details",
   USERNAME: "/username",
-  USERS: "/users",
+  USER: "/user",
+  USER_ID: "/:userId",
 };
 
 const AUTHENTICATED_ROUTES = {
@@ -30,6 +30,21 @@ const AUTHENTICATED_ROUTES = {
   TEAM: [PARTIALS.TEAMS, PARTIALS.TEAM_ID].join(""),
   TEAM_NEW: [PARTIALS.TEAMS, PARTIALS.NEW].join(""),
   TEAM_EDIT: [PARTIALS.TEAMS, PARTIALS.TEAM_ID, PARTIALS.EDIT].join(""),
+  USER_PROFILE: [
+    PARTIALS.TEAMS,
+    PARTIALS.TEAM_ID,
+    PARTIALS.USER,
+    PARTIALS.USER_ID,
+  ].join(""),
+  NEW_MOOD: [
+    PARTIALS.TEAMS,
+    PARTIALS.TEAM_ID,
+    PARTIALS.USER,
+    PARTIALS.USER_ID,
+    ,
+    PARTIALS.ADD,
+    PARTIALS.MOOD,
+  ].join(""),
 };
 
 const ROUTES = {
