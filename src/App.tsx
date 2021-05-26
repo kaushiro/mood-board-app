@@ -12,6 +12,7 @@ import UserDetails from "./pages/AddUser";
 import ChooseMood from "./pages/AddUser/child_pages/ChooseMood";
 import UserProfile from "./pages/UserProfile";
 import TeamProfile from "./pages/TeamProfile";
+import NewMood from "./pages/NewMood";
 import Logout from "./containers/Auth/Logout/Logout";
 import * as actions from "./store/actions/index";
 import ROUTES from "./shared/routes";
@@ -48,8 +49,12 @@ const App: React.FC<IProps> = (props) => {
   if (props.isAuthenticated) {
     routes = (
       <Switch>
-        <Route path="/team/:teamName/user/:userName" component={UserProfile} />
-        <Route path="/team/:teamName" component={TeamProfile} />
+        <Route
+          path="/teams/:teamName/user/:userName/add/mood"
+          component={NewMood}
+        />
+        <Route path="/teams/:teamName/user/:userName" component={UserProfile} />
+        <Route path="/teams/:teamName" component={TeamProfile} />
         <Route path="/logout" component={Logout} />
         <Route path="/intro" component={BoardIntro} />
         <Route path="/choose_mood" component={ChooseMood} />

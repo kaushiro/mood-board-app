@@ -6,7 +6,7 @@ import { useHistory, Redirect } from "react-router-dom";
 import blackOwl from "../../assets/images/owl_black.svg";
 import Logo from "../../components/Logo/Logo";
 import Input from "../../components/UI/Input/Input";
-import Button from "../../components/UI/Button/Button";
+import Button from "../../components/UI/Button";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import * as actions from "../../store/actions/index";
 import { updateObject, checkValidity } from "../../shared/utility";
@@ -180,14 +180,18 @@ const Auth: React.FC<IProps> = ({
       <form onSubmit={submitHandler}>
         {loading ? <Spinner /> : form}
         <SubmitButtonContainerStyled>
-          <Button btnType="Success" className="loginButton">
-            {!isSignup ? "LOGIN" : "SIGN UP"}
-          </Button>
+          <Button
+            btnType="Success"
+            className="loginButton"
+            text={!isSignup ? "LOGIN" : "SIGN UP"}
+          />
         </SubmitButtonContainerStyled>
       </form>
-      <Button clicked={switchAuthModeHandler} btnType="Danger">
-        {!isSignup ? "Sign up now" : "Back to Login"}
-      </Button>
+      <Button
+        onClick={switchAuthModeHandler}
+        btnType="Danger"
+        text={!isSignup ? "Sign up now" : "Back to Login"}
+      />
     </AuthContainerStyled>
   );
 };

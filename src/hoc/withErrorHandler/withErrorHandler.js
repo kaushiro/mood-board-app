@@ -1,6 +1,6 @@
 import React from "react";
 
-import Modal from "../../components/UI/Modal2/Modal";
+import ErrorModal from "../../components/UI/ErrorModal";
 import Aux from "../Aux/Aux";
 import useHttpErrorHandler from "../../hooks/http-error-handler";
 
@@ -10,9 +10,9 @@ const withErrorHandler = (WrappedComponent, axios) => {
 
     return (
       <Aux>
-        <Modal show={error} modalClosed={clearError}>
+        <ErrorModal show={error} modalClosed={clearError}>
           {error ? error.message : null}
-        </Modal>
+        </ErrorModal>
         <WrappedComponent {...props} />
       </Aux>
     );

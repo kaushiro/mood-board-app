@@ -2,8 +2,13 @@ import React, { useEffect, useCallback } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import Button from "../../components/UI/Button/Button";
+import Button from "../../components/UI/Button";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import TeamCard from "../../components/TeamCard";
+import TeamCardHeader, {
+  HEADER_VARIATIONS,
+} from "../../components/TeamCard/components/TeamCardHeader";
+import TeamCardBody from "../../components/TeamCard/components/TeamCardBody";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import * as actions from "../../store/actions/index";
 import axios from "../../axios";
@@ -32,31 +37,42 @@ const BoardIntro = () => {
   const teamsData = useSelector((state: any) => {
     return state.team;
   });
+  // console.log(teamsData);
   const teamsArray = useSelector((state: any) => {
     return Array.from(state.team?.teams);
   });
-
+  // console.log(teamsArray);
   let content = teamsData?.error ? <p>Teams can't be loaded!</p> : <Spinner />;
   if (teamsArray.length) {
     content = (
       <>
         {teamsArray.map((team) => {
           const teamName = Object.keys(team)[0];
-          const teamMembers = Object.keys(team[teamName]);
+          console.log(team);
+          // console.log(team[teamName]);
+          const teamMembers = team[teamName];
           return (
-            <TeamContainerStyled>
-              <ListTitleStyled>
-                <NavLink
-                  to={`/team/${teamName}`}
-                >{`Team: ${teamName}`}</NavLink>
-              </ListTitleStyled>
-
-              {teamMembers.map((member) => (
-                <NavLinkStyled to={`/team/${teamName}/user/${member}`}>
-                  {member}
-                </NavLinkStyled>
-              ))}
-            </TeamContainerStyled>
+            <TeamCard>
+              <TeamCardHeader variation={HEADER_VARIATIONS.GREEN}>
+                <ListTitleStyled>
+                  <NavLink to={`/teams/${teamName}`}>{`${teamName}`}</NavLink>
+                </ListTitleStyled>
+              </TeamCardHeader>
+              <TeamCardBody
+                title={
+                  <ListTitleStyled>
+                    <NavLink to={`/teams/${teamName}`}>{`${teamName}`}</NavLink>
+                  </ListTitleStyled>
+                }
+                description={teamMembers.map((member) => (
+                  <NavLinkStyled
+                    to={`/teams/${teamName}/user/${member.userName}`}
+                  >
+                    {member.userName}
+                  </NavLinkStyled>
+                ))}
+              ></TeamCardBody>
+            </TeamCard>
           );
         })}
       </>
@@ -68,21 +84,23 @@ const BoardIntro = () => {
       <TeamsWrapperStyled>
         {teamsData.loading ? <Spinner /> : content}
       </TeamsWrapperStyled>
-      <p>PLease continue to user details</p>
+      <p>
+        These are the current teams. Please pick your name or click New Member
+        if you have not been added to a team
+      </p>
 
       <ButtonsWrapperStyled>
         <ResetButtonStyled
-          clicked={() => dispatch(actions.resetTeams())}
+          onClick={() => dispatch(actions.resetTeams())}
           btnType="Danger"
-        >
-          Reset Teams
-        </ResetButtonStyled>
+          text={"Reset Teams"}
+          disabled={true}
+        />
         <Button
-          clicked={() => history.push(ROUTES.USER_DETAILS)}
+          onClick={() => history.push(ROUTES.USER_DETAILS)}
           btnType="Success"
-        >
-          Save and Next
-        </Button>
+          text={"New Member"}
+        />
       </ButtonsWrapperStyled>
     </BoardWrapperStyled>
   );

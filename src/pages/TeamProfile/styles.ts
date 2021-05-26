@@ -1,12 +1,15 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const MainContentWrapperStyled = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  margin: 1rem;
+  margin-top: 4rem;
 `;
 
 export const TeamHeaderStyled = styled.h3`
   text-align: center;
+`;
+export const NavLinkStyled = styled(NavLink)`
+  display: block;
 `;

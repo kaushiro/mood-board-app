@@ -38,7 +38,9 @@ export const resetTeams = () => {
 };
 
 export const addTeamMember = (
+  teamIndex,
   userTeam,
+  userIndex,
   userName,
   firstName,
   lastName,
@@ -48,12 +50,42 @@ export const addTeamMember = (
 ) => {
   return {
     type: actionTypes.ADD_TEAM_MEMBER,
+    teamIndex: teamIndex,
     userTeam: userTeam,
+    userIndex: userIndex,
     userName: userName,
     firstName: firstName,
     lastName: lastName,
     mood: mood,
     time: time,
     history: history,
+  };
+};
+
+export const addMood = (
+  teamIndex,
+  userTeam,
+  userIndex,
+  userName,
+  nextMoodIndex,
+  mood,
+  time,
+  history
+) => {
+  return {
+    type: actionTypes.ADD_MOOD,
+    teamIndex: teamIndex,
+    userTeam: userTeam,
+    userIndex: userIndex,
+    userName: userName,
+    mood: mood,
+    nextMoodIndex: nextMoodIndex,
+    time: time,
+    history: history,
+  };
+};
+export const addMoodSuccess = () => {
+  return {
+    type: actionTypes.ADD_MOOD_SUCCESS,
   };
 };
