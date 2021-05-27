@@ -86,7 +86,7 @@ const UserProfile: React.FC = () => {
         <Button
           className="goBackButton"
           onClick={onSetGoBackPath}
-          text={"GO BACK TO TEAMS"}
+          text={`Go back to ${slug.teamName}`}
         />
         <Button
           btnType="Success"
