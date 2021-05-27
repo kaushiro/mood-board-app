@@ -15,19 +15,6 @@ import TeamProfile from "./pages/TeamProfile";
 import NewMood from "./pages/NewMood";
 import Logout from "./containers/Auth/Logout/Logout";
 import * as actions from "./store/actions/index";
-import ROUTES from "./shared/routes";
-
-// const Checkout = React.lazy(() => {
-//   return import("./containers/Checkout/Checkout");
-// });
-
-// const Orders = React.lazy(() => {
-//   return import("./containers/Orders/Orders");
-// });
-
-// const Auth = React.lazy(() => {
-//   return import("./containers/Auth/Auth");
-// });
 interface IProps {
   onTryAutoSignup: any;
   isAuthenticated: boolean;
@@ -68,7 +55,6 @@ const App: React.FC<IProps> = (props) => {
   return (
     <div>
       <Layout>
-        {/* {routes} */}
         <Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>
       </Layout>
     </div>

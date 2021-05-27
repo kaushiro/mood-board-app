@@ -15,7 +15,6 @@ const Button: React.FC<IProps> = ({
   onClick,
   className,
   text,
-  children,
 }) => (
   <ButtonStyled
     disabled={disabled}

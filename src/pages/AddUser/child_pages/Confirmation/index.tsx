@@ -1,14 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import Input from "../../../../components/UI/Input/Input";
 import Button from "../../../../components/UI/Button";
 import List from "../../../../components/List";
-import { updateObject, checkValidity } from "../../../../shared/utility";
 import { NewUserContext } from "../../../../context/UserContext";
 import * as actions from "../../../../store/actions/index";
-import { ROUTES } from "../../../../shared/routes";
 
 import { ConfirmationStyled, SubmitButtonWrapperStyled } from "./styles";
 interface IProps {
@@ -39,13 +36,6 @@ const Confirmation: React.FC<IProps> = ({ onPrevStep }) => {
       dateArray[3]
     );
   };
-  // const options = {
-  //   weekday: "long",
-  //   year: "numeric",
-  //   month: "long",
-  //   day: "numeric",
-  // };
-  // const customDate = new Date().toLocaleTimeString("en-us", options);
   const submitHandler = (userData) => {
     dispatch(
       actions.addTeamMember(

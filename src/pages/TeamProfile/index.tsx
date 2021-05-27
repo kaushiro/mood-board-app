@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import axios from "../../axios";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
@@ -37,7 +37,20 @@ const TeamProfile: React.FC = () => {
     (team) => Object.keys(team)[0] === slug.teamName
   )[0][slug.teamName];
   console.log(selectedTeamArray);
-
+  const teamMoodsArray = [];
+  const selectedTeamMoodsArray = selectedTeamArray.map((member, i) => {
+    console.log(member);
+    return member.moods;
+  }, []);
+  console.log(selectedTeamMoodsArray);
+  const selectedTeamMoodsFlattenedArray = selectedTeamMoodsArray.map(
+    (moods, i) => (mood, i) => {
+      console.log(mood);
+      return mood.mood;
+    }
+  );
+  console.log(selectedTeamMoodsFlattenedArray);
+  console.log(teamMoodsArray);
   return (
     <MainContentWrapperStyled>
       <TeamCard>

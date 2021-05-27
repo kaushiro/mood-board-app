@@ -84,8 +84,3 @@ export const addMood = (
     history: history,
   };
 };
-export const addMoodSuccess = () => {
-  return {
-    type: actionTypes.ADD_MOOD_SUCCESS,
-  };
-};

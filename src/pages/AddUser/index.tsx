@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import SteppedProcess from "../../components/SteppedProcess";
-import { IStep, ITask } from "../../components/SteppedProcess/types";
 import { SteppedProcessWrapperStyled } from "../../components/SteppedProcess/styles";
 import * as actions from "../../store/actions/index";
 import { ROUTES } from "../../shared/routes";
@@ -17,7 +16,6 @@ import UserName from "./child_pages/UserName";
 import Confirmation from "./child_pages/Confirmation";
 
 import messages from "./messages";
-import { defineMessages } from "react-intl";
 
 export enum USER_DETAILS {
   CHOOSE_TEAM = 0,
@@ -71,8 +69,8 @@ const UserDetails: React.FC = () => {
       isCompleted: activeStep > USER_DETAILS.ADD_USERNAME,
     },
     {
-      title: messages.userNameStep.defaultMessage,
-      description: messages.userNameDescription.defaultMessage,
+      title: messages.chooseMoodStep.defaultMessage,
+      description: messages.chooseMoodDescription.defaultMessage,
       content: (
         <ChooseMood
           onPrevStep={() => {

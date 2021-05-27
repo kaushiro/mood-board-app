@@ -11,7 +11,6 @@ export const ButtonStyled = styled.button<IButtonProps>`
   padding: 0.5rem 1rem;
   background-color: transparent;
   border: none;
-  /* color: white; */
   outline: none;
   cursor: pointer;
   font: inherit;

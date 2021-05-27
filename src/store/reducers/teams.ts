@@ -78,28 +78,6 @@ const addMood = (state, action) => {
   };
 };
 
-// const addMood = async (state, action) => {
-//   const newMood = { mood: action.mood, time: action.time };
-
-//   const memberMoodsUrl =
-//     baseUrl +
-//     `/teams/${action.teamIndex}/${action.userTeam}/${action.userIndex}/moods/${action.nextMoodIndex}.json`;
-//   console.log(memberMoodsUrl);
-//   await axios
-//     .patch(memberMoodsUrl, newMood)
-//     .then(() => action.history.push(`/teams/${action.userTeam}`));
-//   return {
-//     ...state,
-//     moods: { mood: action.mood, time: action.time },
-//   };
-// };
-// const addMoodSuccess = (state, action) => {
-//   return updateObject(state, {
-//     loading: false,
-//     error: null,
-//   });
-// };
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_TEAMS:
@@ -114,8 +92,6 @@ const reducer = (state = initialState, action) => {
       return addTeamMember(state, action);
     case actionTypes.ADD_MOOD:
       return addMood(state, action);
-    // case actionTypes.ADD_MOOD_SUCCESS:
-    //   return addMoodSuccess(state, action);
     case actionTypes.RESET_TEAMS:
       return initialState;
 

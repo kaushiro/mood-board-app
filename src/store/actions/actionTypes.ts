@@ -18,4 +18,3 @@ export const ADD_TEAM_MEMBER = "ADD_TEAM_MEMBER";
 export const RESET_TEAMS = "RESET_TEAMS";
 
 export const ADD_MOOD = "ADD_MOOD";
-export const ADD_MOOD_SUCCESS = "ADD_MOOD_SUCCESS";

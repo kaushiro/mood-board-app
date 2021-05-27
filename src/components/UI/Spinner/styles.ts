@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
-// export const SpinnerContainerStyled = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
 export const SpinnerLoaderStyled = styled.div`
-  /* display: flex; */
   color: #521751;
   font-size: 11px;
   text-indent: -99999em;

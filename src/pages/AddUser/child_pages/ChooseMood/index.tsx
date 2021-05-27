@@ -4,7 +4,7 @@ import Aux from "../../../../hoc/Aux/Aux";
 import Button from "../../../../components/UI/Button";
 import { NewUserContext } from "../../../../context/UserContext";
 import Modal from "../../../../components/UI/Modal ";
-import Card, { CARD_VARIATIONS } from "../../../../components/Card";
+import Card from "../../../../components/Card";
 import CardHeader from "../../../../components/Card/components/CardHeader";
 import CardBody from "../../../../components/Card/components/CardBody";
 import {

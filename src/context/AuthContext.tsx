@@ -17,12 +17,6 @@ interface AuthContextState {
   userData?: AuthDataState;
   setAuthData?: Dispatch<SetStateAction<AuthDataState>>;
 }
-// enum InitialAuthContextState {
-//   userTeam = "",
-//   firstName = "",
-//   lastName = "",
-//   userName = "",
-// }
 const InitialAuthContextState: AuthDataState = {
   userTeam: "",
   firstName: "",

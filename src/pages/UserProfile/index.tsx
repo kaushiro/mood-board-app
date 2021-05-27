@@ -1,13 +1,12 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useLocation, NavLink, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import axios from "../../axios";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import Button from "../../components/UI/Button";
 import { ROUTES } from "../../shared/routes";
 import { resolveRoute } from "../../shared/URL";
-import List from "../../components/List";
 import Card, { CARD_VARIATIONS } from "../../components/Card";
 import CardHeader from "../../components/Card/components/CardHeader";
 import CardBody from "../../components/Card/components/CardBody";
@@ -39,9 +38,7 @@ const UserProfile: React.FC = () => {
   )[0];
 
   const selectedMemberMoods = selectedMemberData.moods;
-  // const selectedMemberMoods = selectedMemberData.moods.map(
-  //   (mood) => `${mood.mood}: ${mood.time}`
-  // );
+
   console.log(selectedMemberMoods);
   const getCardVariation = (mood: string) => {
     switch (mood) {
@@ -56,7 +53,14 @@ const UserProfile: React.FC = () => {
     }
   };
 
-  const onSetAuthRedirectPath = (): void => {
+  const onSetGoBackPath = (): void => {
+    history.push(
+      resolveRoute(ROUTES.TEAM, {
+        teamId: slug.teamName,
+      })
+    );
+  };
+  const onSetAddMoodPath = (): void => {
     history.push(
       resolveRoute(ROUTES.NEW_MOOD, {
         teamId: slug.teamName,
@@ -77,9 +81,14 @@ const UserProfile: React.FC = () => {
       </CardWrapperStyled>
       <ButtonWrapperStyled>
         <Button
+          className="goBackButton"
+          onClick={onSetGoBackPath}
+          text={`Go back to ${slug.teamName}`}
+        />
+        <Button
           btnType="Success"
           className="addMoodButton"
-          onClick={onSetAuthRedirectPath}
+          onClick={onSetAddMoodPath}
           text={"ADD ANOTHER MOOD"}
         />
       </ButtonWrapperStyled>

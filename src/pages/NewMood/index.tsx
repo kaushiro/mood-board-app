@@ -4,12 +4,9 @@ import { useParams, useHistory } from "react-router-dom";
 
 import Modal from "../../components/UI/Modal ";
 import Button from "../../components/UI/Button";
-import Card, { CARD_VARIATIONS } from "../../components/Card";
+import Card from "../../components/Card";
 import CardHeader from "../../components/Card/components/CardHeader";
 import CardBody from "../../components/Card/components/CardBody";
-import { ROUTES } from "../../shared/routes";
-import { resolveRoute } from "../../shared/URL";
-import { NewUserContext } from "../../context/UserContext";
 import * as actions from "../../store/actions/index";
 
 import {

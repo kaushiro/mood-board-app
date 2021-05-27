@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { connect } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useHistory, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import blackOwl from "../../assets/images/owl_black.svg";
 import Logo from "../../components/Logo/Logo";
@@ -151,10 +150,6 @@ const Auth: React.FC<IProps> = ({
     />
   ));
 
-  // if (loading) {
-  //   form = <Spinner />;
-  // }
-
   let errorMessage = null;
 
   if (error) {
@@ -163,13 +158,8 @@ const Auth: React.FC<IProps> = ({
 
   let authRedirect = null;
   if (isAuthenticated) {
-    // authRedirectPath("/intro");
-    authRedirect = (
-      <Redirect to={userData.isFirstTimUser ? "/intro" : "choose_mood"} />
-    );
-    // authRedirect = <Redirect to={"/burger"} />;
+    authRedirect = <Redirect to={"/intro"} />;
   }
-  console.log(onAuth);
   return (
     <AuthContainerStyled>
       {authRedirect}

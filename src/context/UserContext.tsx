@@ -19,12 +19,6 @@ interface UserContextState {
   userData?: UserDataState;
   setUserData?: Dispatch<SetStateAction<UserDataState>>;
 }
-// enum InitialUserContextState {
-//   userTeam = "",
-//   firstName = "",
-//   lastName = "",
-//   userName = "",
-// }
 const InitialUserContextState: UserDataState = {
   teamIndex: 0,
   userTeam: "",
