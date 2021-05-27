@@ -56,7 +56,14 @@ const UserProfile: React.FC = () => {
     }
   };
 
-  const onSetAuthRedirectPath = (): void => {
+  const onSetGoBackPath = (): void => {
+    history.push(
+      resolveRoute(ROUTES.TEAM, {
+        teamId: slug.teamName,
+      })
+    );
+  };
+  const onSetAddMoodPath = (): void => {
     history.push(
       resolveRoute(ROUTES.NEW_MOOD, {
         teamId: slug.teamName,
@@ -77,9 +84,14 @@ const UserProfile: React.FC = () => {
       </CardWrapperStyled>
       <ButtonWrapperStyled>
         <Button
+          className="goBackButton"
+          onClick={onSetGoBackPath}
+          text={"GO BACK TO TEAMS"}
+        />
+        <Button
           btnType="Success"
           className="addMoodButton"
-          onClick={onSetAuthRedirectPath}
+          onClick={onSetAddMoodPath}
           text={"ADD ANOTHER MOOD"}
         />
       </ButtonWrapperStyled>

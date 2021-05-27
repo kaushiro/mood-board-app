@@ -42,6 +42,27 @@ const BoardIntro = () => {
     return Array.from(state.team?.teams);
   });
   // console.log(teamsArray);
+  // const redTeamArray = teamsArray.filter(
+  //   (team) => Object.keys(team)[0] === "red_team"
+  // )[0]["red_team"];
+  // console.log(redTeamArray);
+  // const blueTeamArray = teamsArray.filter(
+  //   (team) => Object.keys(team)[0] === "blue_team"
+  // )[0]["blue_team"];
+  // console.log(blueTeamArray);
+  // const teamMoodsArray = [];
+  // const redTeamMoodsArray = redTeamArray.map((member, i) => {
+  //   console.log(member);
+  //   return member.moods;
+  // }, []);
+  // console.log(redTeamMoodsArray);
+  // const redTeamMoodsFlattenedArray = redTeamMoodsArray.map(
+  //   (moods, i) => (mood, i) => {
+  //     console.log(mood);
+  //     return mood.mood;
+  //   }
+  // );
+  // console.log(teamsArray);
   let content = teamsData?.error ? <p>Teams can't be loaded!</p> : <Spinner />;
   if (teamsArray.length) {
     content = (
