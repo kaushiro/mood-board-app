@@ -71,8 +71,8 @@ const UserDetails: React.FC = () => {
       isCompleted: activeStep > USER_DETAILS.ADD_USERNAME,
     },
     {
-      title: messages.chooseMoodStep.defaultMessage,
-      description: messages.chooseMoodDescription.defaultMessage,
+      title: messages.userNameStep.defaultMessage,
+      description: messages.userNameDescription.defaultMessage,
       content: (
         <ChooseMood
           onPrevStep={() => {

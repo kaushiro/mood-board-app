@@ -15,14 +15,6 @@ const messages = {
     id: "pages.UserDetails.userNameDescription",
     defaultMessage: "Please choose a username",
   },
-  chooseMoodStep: {
-    id: "pages.UserDetails.chooseMoodStep",
-    defaultMessage: "Mood",
-  },
-  chooseMoodDescription: {
-    id: "pages.UserDetails.chooseMoodDescription",
-    defaultMessage: "Please choose a mood",
-  },
   confirmStep: {
     id: "pages.UserDetails.confirmStep",
     defaultMessage: "Confirm",
